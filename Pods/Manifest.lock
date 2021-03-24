@@ -34,6 +34,7 @@ PODS:
 
 DEPENDENCIES:
   - YDB2WAssets (~> 1.0.33)
+  - YDB2WIntegration (~> 1.1.0)
   - YDB2WServices (~> 1.1.0)
   - YDExtensions (~> 1.0.42)
   - YDUtilities (~> 1.0.10)
@@ -64,6 +65,6 @@ SPEC CHECKSUMS:
   YDExtensions: 9d923da399a4fbdbf251f58345271103101cd34a
   YDUtilities: 7e56ee0f48101c8bf487ad03135730dbefac70bf
 
-PODFILE CHECKSUM: d2f00e53915eb1bd6762798e8cc39e7608a87d42
+PODFILE CHECKSUM: 940d0a37c4c0f9b884c093c4a5d4e525cc55b865
 
 COCOAPODS: 1.10.1

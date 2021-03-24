@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C18E49AA260BD4D6008A0ABD /* YDNextLives.h in Headers */ = {isa = PBXBuildFile; fileRef = C18E49A8260BD4D6008A0ABD /* YDNextLives.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C18E49C3260BDC77008A0ABD /* YDNextLivesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18E49C2260BDC77008A0ABD /* YDNextLivesCoordinator.swift */; };
+		C18E49E4260BE392008A0ABD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18E49E3260BE392008A0ABD /* HomeViewController.swift */; };
+		C18E49E9260BEB2C008A0ABD /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18E49E8260BEB2C008A0ABD /* HomeViewModel.swift */; };
 		E6C643578A9CF0FD52520534 /* Pods_YDNextLives.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B221278DE017FA02D7E29B17 /* Pods_YDNextLives.framework */; };
 /* End PBXBuildFile section */
 
@@ -18,6 +21,9 @@
 		C18E49A5260BD4D6008A0ABD /* YDNextLives.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YDNextLives.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C18E49A8260BD4D6008A0ABD /* YDNextLives.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDNextLives.h; sourceTree = "<group>"; };
 		C18E49A9260BD4D6008A0ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C18E49C2260BDC77008A0ABD /* YDNextLivesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YDNextLivesCoordinator.swift; sourceTree = "<group>"; };
+		C18E49E3260BE392008A0ABD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		C18E49E8260BEB2C008A0ABD /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +44,6 @@
 				AB0BD5CBE9F6AD9873CCED86 /* Pods-YDNextLives.debug.xcconfig */,
 				B719B1FA460873954BBFFCF0 /* Pods-YDNextLives.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -63,10 +68,45 @@
 		C18E49A7260BD4D6008A0ABD /* YDNextLives */ = {
 			isa = PBXGroup;
 			children = (
+				C18E49C1260BDC65008A0ABD /* Coordinator */,
+				C18E49E6260BEB10008A0ABD /* View */,
+				C18E49E1260BE021008A0ABD /* ViewController */,
+				C18E49E7260BEB14008A0ABD /* ViewModel */,
 				C18E49A8260BD4D6008A0ABD /* YDNextLives.h */,
 				C18E49A9260BD4D6008A0ABD /* Info.plist */,
 			);
 			path = YDNextLives;
+			sourceTree = "<group>";
+		};
+		C18E49C1260BDC65008A0ABD /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				C18E49C2260BDC77008A0ABD /* YDNextLivesCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		C18E49E1260BE021008A0ABD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C18E49E3260BE392008A0ABD /* HomeViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C18E49E6260BEB10008A0ABD /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C18E49E7260BEB14008A0ABD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C18E49E8260BEB2C008A0ABD /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		F154CA5FBC3B167ADDACACC2 /* Frameworks */ = {
@@ -120,6 +160,7 @@
 				TargetAttributes = {
 					C18E49A4260BD4D6008A0ABD = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -181,6 +222,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C18E49C3260BDC77008A0ABD /* YDNextLivesCoordinator.swift in Sources */,
+				C18E49E9260BEB2C008A0ABD /* HomeViewModel.swift in Sources */,
+				C18E49E4260BE392008A0ABD /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +357,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB0BD5CBE9F6AD9873CCED86 /* Pods-YDNextLives.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -328,6 +373,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.yourdev.b2w.YDNextLives;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -337,6 +383,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B719B1FA460873954BBFFCF0 /* Pods-YDNextLives.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;

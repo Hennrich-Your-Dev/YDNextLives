@@ -38,5 +38,6 @@ Pod::Spec.new do |spec|
   spec.dependency "YDB2WAssets", "~> 1.0.33"
   spec.dependency "YDUtilities", "~> 1.0.10"
   spec.dependency "YDB2WServices", "~> 1.1.0"
+  spec.dependency "YDB2WIntegration", "~> 1.1.0"
 
 end
