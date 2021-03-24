@@ -26,7 +26,7 @@ Pod::Spec.new do |spec|
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  spec.source_files     = "YDB2WComponents/**/*.{h,m,swift,xib,storyboard}"
+  spec.source_files     = "YDNextLives/**/*.{h,m,swift}"
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
