@@ -11,11 +11,13 @@ protocol HomeNavigation {
   func onExit()
 }
 
-protocol HomeViewModelDelegate: AnyObject {}
+protocol HomeViewModelDelegate: AnyObject {
+  func onExit()
+}
 
 class HomeViewModel {
   // MARK: Properties
-  let navigation: HomeNavigation?
+  let navigation: HomeNavigation
 
   // MARK: Init
   init(navigation: HomeNavigation) {
@@ -23,4 +25,8 @@ class HomeViewModel {
   }
 }
 
-extension HomeViewModel: HomeViewModelDelegate {}
+extension HomeViewModel: HomeViewModelDelegate {
+  func onExit() {
+    navigation.onExit()
+  }
+}

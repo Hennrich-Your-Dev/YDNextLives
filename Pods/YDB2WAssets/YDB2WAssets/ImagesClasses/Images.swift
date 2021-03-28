@@ -49,6 +49,8 @@ public class Icons {
 
   public static let sadFace = UIImage(named: "iconSadFace", in: podsBundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
 
+  public static let scheduleLive = UIImage(named: "iconScheduleLive", in: podsBundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+
   public static let store = UIImage(named: "iconStore", in: podsBundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
 
   public static let play = UIImage(named: "iconPlay", in: podsBundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)

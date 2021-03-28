@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C16159C22610E99700CDF36C /* LiveHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16159C12610E99700CDF36C /* LiveHeaderView.swift */; };
+		C16159C82610EA3A00CDF36C /* HomeViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16159C72610EA3A00CDF36C /* HomeViewController+TableView.swift */; };
+		C18130162610248D00F0AEE7 /* LiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18130152610248D00F0AEE7 /* LiveTableViewCell.swift */; };
 		C18E49AA260BD4D6008A0ABD /* YDNextLives.h in Headers */ = {isa = PBXBuildFile; fileRef = C18E49A8260BD4D6008A0ABD /* YDNextLives.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C18E49C3260BDC77008A0ABD /* YDNextLivesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18E49C2260BDC77008A0ABD /* YDNextLivesCoordinator.swift */; };
 		C18E49E4260BE392008A0ABD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18E49E3260BE392008A0ABD /* HomeViewController.swift */; };
 		C18E49E9260BEB2C008A0ABD /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18E49E8260BEB2C008A0ABD /* HomeViewModel.swift */; };
+		C18E4A11260C0E87008A0ABD /* HomeViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18E4A10260C0E87008A0ABD /* HomeViewController+Layout.swift */; };
 		E6C643578A9CF0FD52520534 /* Pods_YDNextLives.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B221278DE017FA02D7E29B17 /* Pods_YDNextLives.framework */; };
 /* End PBXBuildFile section */
 
@@ -18,12 +22,16 @@
 		AB0BD5CBE9F6AD9873CCED86 /* Pods-YDNextLives.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YDNextLives.debug.xcconfig"; path = "Target Support Files/Pods-YDNextLives/Pods-YDNextLives.debug.xcconfig"; sourceTree = "<group>"; };
 		B221278DE017FA02D7E29B17 /* Pods_YDNextLives.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YDNextLives.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B719B1FA460873954BBFFCF0 /* Pods-YDNextLives.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YDNextLives.release.xcconfig"; path = "Target Support Files/Pods-YDNextLives/Pods-YDNextLives.release.xcconfig"; sourceTree = "<group>"; };
+		C16159C12610E99700CDF36C /* LiveHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveHeaderView.swift; sourceTree = "<group>"; };
+		C16159C72610EA3A00CDF36C /* HomeViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+TableView.swift"; sourceTree = "<group>"; };
+		C18130152610248D00F0AEE7 /* LiveTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTableViewCell.swift; sourceTree = "<group>"; };
 		C18E49A5260BD4D6008A0ABD /* YDNextLives.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YDNextLives.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C18E49A8260BD4D6008A0ABD /* YDNextLives.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDNextLives.h; sourceTree = "<group>"; };
 		C18E49A9260BD4D6008A0ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C18E49C2260BDC77008A0ABD /* YDNextLivesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YDNextLivesCoordinator.swift; sourceTree = "<group>"; };
 		C18E49E3260BE392008A0ABD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C18E49E8260BEB2C008A0ABD /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		C18E4A10260C0E87008A0ABD /* HomeViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Layout.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +53,47 @@
 				B719B1FA460873954BBFFCF0 /* Pods-YDNextLives.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C16159C02610E8F200CDF36C /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				C16159C12610E99700CDF36C /* LiveHeaderView.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		C16159C52610E9BB00CDF36C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C16159C62610E9C100CDF36C /* TableView */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C16159C62610E9C100CDF36C /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				C16159C72610EA3A00CDF36C /* HomeViewController+TableView.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		C18130132610241300F0AEE7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C16159C02610E8F200CDF36C /* Header */,
+				C18130142610245100F0AEE7 /* Cell */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C18130142610245100F0AEE7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C18130152610248D00F0AEE7 /* LiveTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		C18E499B260BD4D6008A0ABD = {
@@ -89,6 +138,7 @@
 		C18E49E1260BE021008A0ABD /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				C16159C52610E9BB00CDF36C /* Extensions */,
 				C18E49E3260BE392008A0ABD /* HomeViewController.swift */,
 			);
 			path = ViewController;
@@ -97,6 +147,8 @@
 		C18E49E6260BEB10008A0ABD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C18130132610241300F0AEE7 /* Extensions */,
+				C18E4A10260C0E87008A0ABD /* HomeViewController+Layout.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -140,6 +192,7 @@
 				C18E49A1260BD4D6008A0ABD /* Sources */,
 				C18E49A2260BD4D6008A0ABD /* Frameworks */,
 				C18E49A3260BD4D6008A0ABD /* Resources */,
+				C16159AE2610C83300CDF36C /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -215,6 +268,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C16159AE2610C83300CDF36C /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ -f ~/.com.raywenderlich.swiftlint.yml ]; then\n  if which swiftlint >/dev/null; then\n    swiftlint --config ~/.com.raywenderlich.swiftlint.yml\n  fi\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -222,9 +293,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C16159C82610EA3A00CDF36C /* HomeViewController+TableView.swift in Sources */,
 				C18E49C3260BDC77008A0ABD /* YDNextLivesCoordinator.swift in Sources */,
+				C18130162610248D00F0AEE7 /* LiveTableViewCell.swift in Sources */,
 				C18E49E9260BEB2C008A0ABD /* HomeViewModel.swift in Sources */,
+				C16159C22610E99700CDF36C /* LiveHeaderView.swift in Sources */,
 				C18E49E4260BE392008A0ABD /* HomeViewController.swift in Sources */,
+				C18E4A11260C0E87008A0ABD /* HomeViewController+Layout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

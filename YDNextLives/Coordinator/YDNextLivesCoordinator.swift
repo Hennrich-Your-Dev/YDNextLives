@@ -20,7 +20,6 @@ public class YDNextLivesCoordinator {
 
   lazy var navigationController: UINavigationController = {
     let nav = UINavigationController()
-    nav.modalPresentationStyle = .overCurrentContext
     nav.navigationBar.prefersLargeTitles = true
 
     if #available(iOS 13.0, *) {
@@ -43,7 +42,7 @@ public class YDNextLivesCoordinator {
     }
 
     nav.navigationBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
-    nav.navigationBar.tintColor = UIColor.Zeplin.black
+    nav.navigationBar.tintColor = UIColor.Zeplin.redBranding
     return nav
   }()
 
