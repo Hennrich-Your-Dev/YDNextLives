@@ -7,6 +7,8 @@
 
 import UIKit
 
+import YDExtensions
+
 // MARK: Data Source
 extension HomeViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -14,7 +16,7 @@ extension HomeViewController: UITableViewDataSource {
       return numberOfShimmers
     }
 
-    return 8
+    return viewModel?.nextLives.value.count ?? 0
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -34,13 +36,13 @@ extension HomeViewController: UITableViewDataSource {
     guard let cell = tableView.dequeueReusableCell(
       withIdentifier: LiveTableViewCell.identifier,
       for: indexPath
-    ) as? LiveTableViewCell
+    ) as? LiveTableViewCell,
+    let currentLive = viewModel?.nextLives.value.at(indexPath.row)
     else {
       fatalError("dequeue LiveTableViewCell")
     }
 
-    cell.setStyle(actived: indexPath.row == 0)
-    cell.config()
+    cell.config(withLive: currentLive)
 
     return cell
   }

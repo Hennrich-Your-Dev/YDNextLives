@@ -58,15 +58,16 @@ class LiveTableViewCell: UITableViewCell {
     scheduleButton.isEnabled = !actived
   }
 
-  func config() {
+  func config(withLive live: NextLive) {
     photoImageView.stopShimmer()
     dateLabel.stopShimmer()
     nameLabel.stopShimmer()
     descriptionLabel.stopShimmer()
     scheduleButton.stopShimmer()
-    dateLabel.text = "22/05 • 21:00-22:00"
-    nameLabel.text = "Nome da Live"
-    descriptionLabel.text = .loremIpsum()
+    dateLabel.text = live.formatedDate
+    nameLabel.text = live.name
+    descriptionLabel.text = live.description
+    setStyle(actived: live.isToday)
   }
 
   func shimmerCell() {
