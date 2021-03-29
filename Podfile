@@ -17,4 +17,5 @@ target "YDNextLives" do
   pod "YDUtilities", "~> 1.0.10"
   pod "YDB2WServices", "~> 1.1.0"
   pod "YDB2WIntegration", "~> 1.1.0"
+  pod "YDB2WComponents", "~> 1.1.0"
 end

@@ -9,7 +9,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "YDNextLives"
-  spec.version      = "1.0.2"
+  spec.version      = "1.0.3"
   spec.summary      = "A short description of YDNextLives."
   spec.homepage     = "https://yourdev.com.br"
   spec.license      = "MIT"
@@ -39,5 +39,6 @@ Pod::Spec.new do |spec|
   spec.dependency "YDUtilities", "~> 1.0.10"
   spec.dependency "YDB2WServices", "~> 1.1.0"
   spec.dependency "YDB2WIntegration", "~> 1.1.0"
+  spec.dependency "YDB2WComponents", "~> 1.1.0"
 
 end

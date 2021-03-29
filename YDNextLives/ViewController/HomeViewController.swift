@@ -16,6 +16,8 @@ class HomeViewController: UIViewController {
 
   // MARK: Components
   let tableView = UITableView()
+  let emptyStateView = UIView()
+  let errorStateView = UIView()
 
   // MARK: View life cycle
   override func viewDidLoad() {
@@ -30,22 +32,5 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
   @objc func onBackAction() {
     viewModel?.onExit()
-  }
-}
-
-// MARK: Binds
-extension HomeViewController {
-  func setUpBinds() {
-    viewModel?.loading.bind { [weak self] isLoading in
-      guard let self = self else { return }
-      self.shimmer = isLoading
-      self.tableView.reloadData()
-
-      if isLoading {
-        DispatchQueue.main.async {
-          self.tableView.contentOffset = CGPoint(x: 0, y: -50)
-        }
-      }
-    }
   }
 }

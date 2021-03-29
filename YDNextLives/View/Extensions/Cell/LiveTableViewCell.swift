@@ -169,7 +169,7 @@ extension LiveTableViewCell {
     NSLayoutConstraint.activate([
       descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 3),
       descriptionLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-      descriptionLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
+      descriptionLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor)
     ])
   }
 

@@ -16,6 +16,7 @@ protocol HomeNavigation {
 
 protocol HomeViewModelDelegate: AnyObject {
   var loading: Binder<Bool> { get }
+  var nextLives: Binder<[NextLive]> { get }
 
   func onExit()
   func getNextLives()
@@ -26,6 +27,7 @@ class HomeViewModel {
   let navigation: HomeNavigation
 
   var loading: Binder<Bool> = Binder(false)
+  var nextLives: Binder<[NextLive]> = Binder([])
 
   // MARK: Init
   init(navigation: HomeNavigation) {
@@ -39,12 +41,12 @@ extension HomeViewModel: HomeViewModelDelegate {
   }
 
   func getNextLives() {
-    print(#function)
     loading.value = true
 
     Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { [weak self] _ in
       guard let self = self else { return }
       self.loading.value = false
+      self.nextLives.value = []
     }
   }
 }

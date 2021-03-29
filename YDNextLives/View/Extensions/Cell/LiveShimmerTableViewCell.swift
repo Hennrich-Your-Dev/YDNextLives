@@ -12,12 +12,12 @@ class LiveShimmerTableViewCell: UITableViewCell {
 
   // MARK: Components
   let containerView = UIView()
-  let photoImageView = UIView()
-  let dateLabel = UIView()
-  let nameLabel = UIView()
-  let descriptionLabel = UIView()
-  let descriptionLabel2 = UIView()
-  let scheduleButton = UIView()
+  let photoImageViewShimmer = UIView()
+  let dateLabelShimmer = UIView()
+  let nameLabelShimmer = UIView()
+  let descriptionLabelShimmer = UIView()
+  let descriptionLabel2Shimmer = UIView()
+  let scheduleButtonShimmer = UIView()
 
   // MARK: Init
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -36,12 +36,12 @@ class LiveShimmerTableViewCell: UITableViewCell {
   func shimmerCell() {
     DispatchQueue.main.async { [weak self] in
       guard let self = self else { return }
-      self.photoImageView.startShimmer()
-      self.dateLabel.startShimmer()
-      self.nameLabel.startShimmer()
-      self.descriptionLabel.startShimmer()
-      self.descriptionLabel2.startShimmer()
-      self.scheduleButton.startShimmer()
+      self.photoImageViewShimmer.startShimmer()
+      self.dateLabelShimmer.startShimmer()
+      self.nameLabelShimmer.startShimmer()
+      self.descriptionLabelShimmer.startShimmer()
+      self.descriptionLabel2Shimmer.startShimmer()
+      self.scheduleButtonShimmer.startShimmer()
     }
   }
 }
@@ -76,89 +76,107 @@ extension LiveShimmerTableViewCell {
 
   // Photo
   private func createPhotoImageView() {
-    photoImageView.layer.cornerRadius = 3
-    photoImageView.backgroundColor = UIColor.Zeplin.graySurface
-    containerView.addSubview(photoImageView)
+    photoImageViewShimmer.layer.cornerRadius = 3
+    photoImageViewShimmer.backgroundColor = UIColor.Zeplin.graySurface
+    containerView.addSubview(photoImageViewShimmer)
 
-    photoImageView.translatesAutoresizingMaskIntoConstraints = false
+    photoImageViewShimmer.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
-      photoImageView.widthAnchor.constraint(equalToConstant: 116),
-      photoImageView.heightAnchor.constraint(equalToConstant: 116),
-      photoImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
-      photoImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
-      photoImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16)
+      photoImageViewShimmer.widthAnchor.constraint(equalToConstant: 116),
+      photoImageViewShimmer.heightAnchor.constraint(equalToConstant: 116),
+      photoImageViewShimmer.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
+      photoImageViewShimmer.leadingAnchor.constraint(
+        equalTo: containerView.leadingAnchor,
+        constant: 10
+      ),
+      photoImageViewShimmer.bottomAnchor.constraint(
+        equalTo: containerView.bottomAnchor,
+        constant: -16
+      )
     ])
   }
 
   // Date
   private func createDateLabel() {
-    dateLabel.backgroundColor = UIColor.Zeplin.graySurface
-    dateLabel.layer.cornerRadius = 3
-    containerView.addSubview(dateLabel)
+    dateLabelShimmer.backgroundColor = UIColor.Zeplin.graySurface
+    dateLabelShimmer.layer.cornerRadius = 3
+    containerView.addSubview(dateLabelShimmer)
 
-    dateLabel.translatesAutoresizingMaskIntoConstraints = false
+    dateLabelShimmer.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
-      dateLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
-      dateLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 12),
-      dateLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -12),
-      dateLabel.heightAnchor.constraint(equalToConstant: 12)
+      dateLabelShimmer.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
+      dateLabelShimmer.leadingAnchor.constraint(
+        equalTo: photoImageViewShimmer.trailingAnchor,
+        constant: 12
+      ),
+      dateLabelShimmer.trailingAnchor.constraint(
+        equalTo: containerView.trailingAnchor,
+        constant: -12
+      ),
+      dateLabelShimmer.heightAnchor.constraint(equalToConstant: 12)
     ])
   }
 
   // Name
   private func createNameLabel() {
-    nameLabel.backgroundColor = UIColor.Zeplin.graySurface
-    nameLabel.layer.cornerRadius = 3
-    containerView.addSubview(nameLabel)
+    nameLabelShimmer.backgroundColor = UIColor.Zeplin.graySurface
+    nameLabelShimmer.layer.cornerRadius = 3
+    containerView.addSubview(nameLabelShimmer)
 
-    nameLabel.translatesAutoresizingMaskIntoConstraints = false
+    nameLabelShimmer.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
-      nameLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 10),
-      nameLabel.leadingAnchor.constraint(equalTo: dateLabel.leadingAnchor),
-      nameLabel.trailingAnchor.constraint(equalTo: dateLabel.trailingAnchor),
-      nameLabel.heightAnchor.constraint(equalToConstant: 20)
+      nameLabelShimmer.topAnchor.constraint(equalTo: dateLabelShimmer.bottomAnchor, constant: 10),
+      nameLabelShimmer.leadingAnchor.constraint(equalTo: dateLabelShimmer.leadingAnchor),
+      nameLabelShimmer.trailingAnchor.constraint(equalTo: dateLabelShimmer.trailingAnchor),
+      nameLabelShimmer.heightAnchor.constraint(equalToConstant: 20)
     ])
   }
 
   // Description
   private func createDescriptionLabel() {
-    descriptionLabel.backgroundColor = UIColor.Zeplin.graySurface
-    descriptionLabel.layer.cornerRadius = 3
-    containerView.addSubview(descriptionLabel)
+    descriptionLabelShimmer.backgroundColor = UIColor.Zeplin.graySurface
+    descriptionLabelShimmer.layer.cornerRadius = 3
+    containerView.addSubview(descriptionLabelShimmer)
 
-    descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+    descriptionLabelShimmer.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
-      descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4),
-      descriptionLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-      descriptionLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
-      descriptionLabel.heightAnchor.constraint(equalToConstant: 12)
+      descriptionLabelShimmer.topAnchor.constraint(
+        equalTo: nameLabelShimmer.bottomAnchor,
+        constant: 4
+      ),
+      descriptionLabelShimmer.leadingAnchor.constraint(equalTo: nameLabelShimmer.leadingAnchor),
+      descriptionLabelShimmer.trailingAnchor.constraint(equalTo: nameLabelShimmer.trailingAnchor),
+      descriptionLabelShimmer.heightAnchor.constraint(equalToConstant: 12)
     ])
 
-    descriptionLabel2.backgroundColor = UIColor.Zeplin.graySurface
-    descriptionLabel2.layer.cornerRadius = 3
-    containerView.addSubview(descriptionLabel2)
+    descriptionLabel2Shimmer.backgroundColor = UIColor.Zeplin.graySurface
+    descriptionLabel2Shimmer.layer.cornerRadius = 3
+    containerView.addSubview(descriptionLabel2Shimmer)
 
-    descriptionLabel2.translatesAutoresizingMaskIntoConstraints = false
+    descriptionLabel2Shimmer.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
-      descriptionLabel2.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 4),
-      descriptionLabel2.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-      descriptionLabel2.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -108),
-      descriptionLabel2.heightAnchor.constraint(equalToConstant: 12)
+      descriptionLabel2Shimmer.topAnchor.constraint(
+        equalTo: descriptionLabelShimmer.bottomAnchor,
+        constant: 4
+      ),
+      descriptionLabel2Shimmer.leadingAnchor.constraint(equalTo: nameLabelShimmer.leadingAnchor),
+      descriptionLabel2Shimmer.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -108),
+      descriptionLabel2Shimmer.heightAnchor.constraint(equalToConstant: 12)
     ])
   }
 
   // Schedule Button
   private func createScheduleButton() {
-    scheduleButton.backgroundColor = UIColor.Zeplin.graySurface
-    scheduleButton.layer.cornerRadius = 3
-    containerView.addSubview(scheduleButton)
+    scheduleButtonShimmer.backgroundColor = UIColor.Zeplin.graySurface
+    scheduleButtonShimmer.layer.cornerRadius = 3
+    containerView.addSubview(scheduleButtonShimmer)
 
-    scheduleButton.translatesAutoresizingMaskIntoConstraints = false
+    scheduleButtonShimmer.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
-      scheduleButton.heightAnchor.constraint(equalToConstant: 20),
-      scheduleButton.widthAnchor.constraint(equalToConstant: 90),
-      scheduleButton.trailingAnchor.constraint(equalTo: dateLabel.trailingAnchor),
-      scheduleButton.bottomAnchor.constraint(
+      scheduleButtonShimmer.heightAnchor.constraint(equalToConstant: 20),
+      scheduleButtonShimmer.widthAnchor.constraint(equalToConstant: 90),
+      scheduleButtonShimmer.trailingAnchor.constraint(equalTo: dateLabelShimmer.trailingAnchor),
+      scheduleButtonShimmer.bottomAnchor.constraint(
         equalTo: containerView.bottomAnchor,
         constant: -16
       )

@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.9.1)
+  - Cosmos (23.0.0)
   - Kingfisher (5.15.8):
     - Kingfisher/Core (= 5.15.8)
   - Kingfisher/Core (5.15.8)
@@ -15,7 +16,13 @@ PODS:
   - libwebp/mux (1.2.0):
     - libwebp/demux
   - libwebp/webp (1.2.0)
-  - YDB2WAssets (1.0.35)
+  - YDB2WAssets (1.0.36)
+  - YDB2WComponents (1.1.4):
+    - Cosmos
+    - YDB2WAssets (~> 1.0.33)
+    - YDB2WModels (~> 1.1.0)
+    - YDExtensions (~> 1.0.42)
+    - YDUtilities (~> 1.0.10)
   - YDB2WIntegration (1.1.1):
     - YDB2WModels
     - YDExtensions
@@ -26,7 +33,7 @@ PODS:
     - Alamofire (~> 4.0)
     - YDB2WIntegration (~> 1.1.0)
     - YDB2WModels (~> 1.1.0)
-  - YDExtensions (1.0.42):
+  - YDExtensions (1.0.43):
     - Kingfisher (~> 5.0)
     - KingfisherWebP (= 1.0.0)
   - YDUtilities (1.0.10):
@@ -34,6 +41,7 @@ PODS:
 
 DEPENDENCIES:
   - YDB2WAssets (~> 1.0.33)
+  - YDB2WComponents (~> 1.1.0)
   - YDB2WIntegration (~> 1.1.0)
   - YDB2WServices (~> 1.1.0)
   - YDExtensions (~> 1.0.42)
@@ -42,6 +50,7 @@ DEPENDENCIES:
 SPEC REPOS:
   "git@github.com:Hennrich-Your-Dev/YourDev-Pods.git":
     - YDB2WAssets
+    - YDB2WComponents
     - YDB2WIntegration
     - YDB2WModels
     - YDB2WServices
@@ -49,22 +58,25 @@ SPEC REPOS:
     - YDUtilities
   trunk:
     - Alamofire
+    - Cosmos
     - Kingfisher
     - KingfisherWebP
     - libwebp
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
   KingfisherWebP: b1ed1dbc5e52547c5bf5f583dd5c46346f97320f
   libwebp: e90b9c01d99205d03b6bb8f2c8c415e5a4ef66f0
-  YDB2WAssets: 76b452a1b6bd05ad813661f30d18383b4cb9294f
+  YDB2WAssets: 6f1103322931ba998f6a6caa7bd358563de7d26a
+  YDB2WComponents: 7ddd14c0f34dbeee6d44d8db7876ea6f5beff95d
   YDB2WIntegration: e93c1c6235e782dc4372bf58634f34cf169a3963
   YDB2WModels: 939dc7568c1f483183cef4b6a4fe8ad20ba9d622
   YDB2WServices: c92962bf1880acf6c230133daecfb9d87a5675b6
-  YDExtensions: 9d923da399a4fbdbf251f58345271103101cd34a
+  YDExtensions: 758762111fca020fc5172fe9fc4e31b7fa753395
   YDUtilities: 7e56ee0f48101c8bf487ad03135730dbefac70bf
 
-PODFILE CHECKSUM: 940d0a37c4c0f9b884c093c4a5d4e525cc55b865
+PODFILE CHECKSUM: 5175766ee80d26027d9bbe51371493198bea4347
 
 COCOAPODS: 1.10.1

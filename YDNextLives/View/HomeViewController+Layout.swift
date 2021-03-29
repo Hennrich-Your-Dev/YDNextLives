@@ -7,6 +7,10 @@
 
 import UIKit
 
+import YDExtensions
+import YDB2WComponents
+import YDB2WAssets
+
 extension HomeViewController {
   func setUpLayouts() {
     view.backgroundColor = .white
@@ -15,10 +19,11 @@ extension HomeViewController {
     navigationItem.rightBarButtonItems = [createRightButton()]
 
     createTableView()
+    createEmptyState()
   }
 
   // Bar Item
-  private func createRightButton() -> UIBarButtonItem {
+  func createRightButton() -> UIBarButtonItem {
     let button = UIBarButtonItem(
       title: "fechar",
       style: .plain,
@@ -30,13 +35,27 @@ extension HomeViewController {
 
   // TableView
   func createTableView() {
+    tableView.frame = view.frame
     tableView.separatorStyle = .none
-    tableView.tableFooterView = UIView()
+    tableView.tableHeaderView = UIView(
+      frame: CGRect(
+        x: 0,
+        y: 0,
+        width: 0,
+        height: 10
+      )
+    )
+    tableView.tableFooterView = UIView(
+      frame: CGRect(
+        x: 0,
+        y: 0,
+        width: 0,
+        height: view.safeAreaInsets.bottom + 20
+      )
+    )
     tableView.backgroundColor = .clear
-    tableView.rowHeight = 142
-    tableView.estimatedSectionFooterHeight = 20
+    tableView.rowHeight = 154
     tableView.dataSource = self
-    tableView.delegate = self
 
     // Cell
     tableView.register(
@@ -50,12 +69,6 @@ extension HomeViewController {
       forCellReuseIdentifier: LiveShimmerTableViewCell.identifier
     )
 
-    // Footer
-    tableView.register(
-      LiveFooterView.self,
-      forHeaderFooterViewReuseIdentifier: LiveHeaderView.identifier
-    )
-
     view.addSubview(tableView)
     tableView.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
@@ -63,6 +76,77 @@ extension HomeViewController {
       tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
       tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+    ])
+
+    numberOfShimmers = Int((tableView.frame.size.height / cellHeightSize).rounded(.up))
+  }
+
+  // Empty State
+  func createEmptyState() {
+    view.addSubview(emptyStateView)
+    emptyStateView.isHidden = true
+
+    // Icon
+    let icon = UIImageView()
+    icon.image = Icons.scheduleAction
+    icon.tintColor = UIColor.Zeplin.grayNight
+    emptyStateView.addSubview(icon)
+
+    icon.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      icon.centerXAnchor.constraint(equalTo: emptyStateView.centerXAnchor),
+      icon.centerYAnchor.constraint(
+        equalToSystemSpacingBelow: emptyStateView.centerYAnchor,
+        multiplier: -1
+      ),
+      icon.widthAnchor.constraint(equalToConstant: 116),
+      icon.heightAnchor.constraint(equalToConstant: 116)
+    ])
+
+    // Title
+    let titleLabel = UILabel()
+    titleLabel.font = .systemFont(ofSize: 16, weight: .bold)
+    titleLabel.textColor = UIColor.Zeplin.black
+    titleLabel.text = "poooxa, não temos nada planejado!"
+    titleLabel.textAlignment = .center
+    emptyStateView.addSubview(titleLabel)
+
+    titleLabel.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      titleLabel.leadingAnchor.constraint(
+        equalTo: emptyStateView.leadingAnchor,
+        constant: 24
+      ),
+      titleLabel.trailingAnchor.constraint(
+        equalTo: emptyStateView.trailingAnchor,
+        constant: -24
+      ),
+      titleLabel.topAnchor.constraint(equalTo: icon.bottomAnchor, constant: 20)
+    ])
+
+    // Message
+    let messageLabel = UILabel()
+    messageLabel.font = .systemFont(ofSize: 14)
+    messageLabel.textColor = UIColor.Zeplin.grayLight
+    messageLabel.numberOfLines = 0
+    messageLabel.textAlignment = .center
+    messageLabel.text = .loremIpsum()
+    emptyStateView.addSubview(messageLabel)
+
+    messageLabel.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      messageLabel.leadingAnchor.constraint(
+        equalTo: emptyStateView.leadingAnchor,
+        constant: 46
+      ),
+      messageLabel.trailingAnchor.constraint(
+        equalTo: emptyStateView.trailingAnchor,
+        constant: -46
+      ),
+      messageLabel.topAnchor.constraint(
+        equalTo: titleLabel.bottomAnchor,
+        constant: 8
+      )
     ])
   }
 }
