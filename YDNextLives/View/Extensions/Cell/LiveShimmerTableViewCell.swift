@@ -1,25 +1,23 @@
 //
-//  LiveTableViewCell.swift
+//  LiveShimmerTableViewCell.swift
 //  YDNextLives
 //
-//  Created by Douglas Hennrich on 27/03/21.
+//  Created by Douglas Hennrich on 28/03/21.
 //
 
 import UIKit
 
-import YDExtensions
-import YDB2WAssets
-
-class LiveTableViewCell: UITableViewCell {
+class LiveShimmerTableViewCell: UITableViewCell {
   // MARK: Properties
 
   // MARK: Components
   let containerView = UIView()
-  let photoImageView = UIImageView()
-  let dateLabel = UILabel()
-  let nameLabel = UILabel()
-  let descriptionLabel = UILabel()
-  let scheduleButton = UIButton()
+  let photoImageView = UIView()
+  let dateLabel = UIView()
+  let nameLabel = UIView()
+  let descriptionLabel = UIView()
+  let descriptionLabel2 = UIView()
+  let scheduleButton = UIView()
 
   // MARK: Init
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -34,41 +32,7 @@ class LiveTableViewCell: UITableViewCell {
     fatalError("init(coder:) has not been implemented")
   }
 
-  override func prepareForReuse() {
-    super.prepareForReuse()
-    photoImageView.image = nil
-    dateLabel.text = nil
-    nameLabel.text = nil
-    descriptionLabel.text = nil
-//    photoImageView.stopShimmer()
-//    dateLabel.stopShimmer()
-//    nameLabel.stopShimmer()
-//    descriptionLabel.stopShimmer()
-//    scheduleButton.stopShimmer()
-  }
-
   // MARK: Actions
-  func setStyle(actived: Bool) {
-    dateLabel.textColor = actived ? UIColor.Zeplin.redNight : UIColor.Zeplin.grayNight
-    scheduleButton.tintColor = actived ? UIColor.Zeplin.grayNight : UIColor.Zeplin.redBranding
-    scheduleButton.setTitleColor(
-      actived ? UIColor.Zeplin.grayNight : UIColor.Zeplin.redBranding,
-      for: .normal
-    )
-    scheduleButton.isEnabled = !actived
-  }
-
-  func config() {
-    photoImageView.stopShimmer()
-    dateLabel.stopShimmer()
-    nameLabel.stopShimmer()
-    descriptionLabel.stopShimmer()
-    scheduleButton.stopShimmer()
-    dateLabel.text = "22/05 • 21:00-22:00"
-    nameLabel.text = "Nome da Live"
-    descriptionLabel.text = .loremIpsum()
-  }
-
   func shimmerCell() {
     DispatchQueue.main.async { [weak self] in
       guard let self = self else { return }
@@ -76,13 +40,14 @@ class LiveTableViewCell: UITableViewCell {
       self.dateLabel.startShimmer()
       self.nameLabel.startShimmer()
       self.descriptionLabel.startShimmer()
+      self.descriptionLabel2.startShimmer()
       self.scheduleButton.startShimmer()
     }
   }
 }
 
 // MARK: Layout
-extension LiveTableViewCell {
+extension LiveShimmerTableViewCell {
   func setUpLayout() {
     createContainerView()
     createPhotoImageView()
@@ -111,7 +76,7 @@ extension LiveTableViewCell {
 
   // Photo
   private func createPhotoImageView() {
-    photoImageView.layer.cornerRadius = 4
+    photoImageView.layer.cornerRadius = 3
     photoImageView.backgroundColor = UIColor.Zeplin.graySurface
     containerView.addSubview(photoImageView)
 
@@ -127,9 +92,8 @@ extension LiveTableViewCell {
 
   // Date
   private func createDateLabel() {
-    dateLabel.textColor = UIColor.Zeplin.grayLight
-    dateLabel.font = .systemFont(ofSize: 12, weight: .bold)
-    dateLabel.textAlignment = .left
+    dateLabel.backgroundColor = UIColor.Zeplin.graySurface
+    dateLabel.layer.cornerRadius = 3
     containerView.addSubview(dateLabel)
 
     dateLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -137,59 +101,67 @@ extension LiveTableViewCell {
       dateLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
       dateLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 12),
       dateLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -12),
-      dateLabel.heightAnchor.constraint(equalToConstant: 14)
+      dateLabel.heightAnchor.constraint(equalToConstant: 12)
     ])
   }
 
   // Name
   private func createNameLabel() {
-    nameLabel.textColor = UIColor.Zeplin.black
-    nameLabel.font = .systemFont(ofSize: 16, weight: .bold)
-    nameLabel.textAlignment = .left
+    nameLabel.backgroundColor = UIColor.Zeplin.graySurface
+    nameLabel.layer.cornerRadius = 3
     containerView.addSubview(nameLabel)
 
     nameLabel.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
-      nameLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 8),
+      nameLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 10),
       nameLabel.leadingAnchor.constraint(equalTo: dateLabel.leadingAnchor),
       nameLabel.trailingAnchor.constraint(equalTo: dateLabel.trailingAnchor),
-      nameLabel.heightAnchor.constraint(equalToConstant: 19)
+      nameLabel.heightAnchor.constraint(equalToConstant: 20)
     ])
   }
 
   // Description
   private func createDescriptionLabel() {
-    descriptionLabel.textColor = UIColor.Zeplin.grayLight
-    descriptionLabel.font = .systemFont(ofSize: 12)
-    descriptionLabel.textAlignment = .left
-    descriptionLabel.numberOfLines = 2
+    descriptionLabel.backgroundColor = UIColor.Zeplin.graySurface
+    descriptionLabel.layer.cornerRadius = 3
     containerView.addSubview(descriptionLabel)
 
     descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
-      descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 3),
+      descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4),
       descriptionLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
       descriptionLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
+      descriptionLabel.heightAnchor.constraint(equalToConstant: 12)
+    ])
+
+    descriptionLabel2.backgroundColor = UIColor.Zeplin.graySurface
+    descriptionLabel2.layer.cornerRadius = 3
+    containerView.addSubview(descriptionLabel2)
+
+    descriptionLabel2.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      descriptionLabel2.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 4),
+      descriptionLabel2.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+      descriptionLabel2.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -108),
+      descriptionLabel2.heightAnchor.constraint(equalToConstant: 12)
     ])
   }
 
   // Schedule Button
   private func createScheduleButton() {
-    scheduleButton.tintColor = UIColor.Zeplin.redBranding
-    scheduleButton.setTitleColor(UIColor.Zeplin.redBranding, for: .normal)
-    scheduleButton.setTitle("adicionar", for: .normal)
-    scheduleButton.setImage(Icons.scheduleLive, for: .normal)
-    scheduleButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
-    scheduleButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
-    scheduleButton.contentHorizontalAlignment = .right
+    scheduleButton.backgroundColor = UIColor.Zeplin.graySurface
+    scheduleButton.layer.cornerRadius = 3
     containerView.addSubview(scheduleButton)
 
     scheduleButton.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
-      scheduleButton.heightAnchor.constraint(equalToConstant: 40),
-      scheduleButton.widthAnchor.constraint(equalToConstant: 120),
+      scheduleButton.heightAnchor.constraint(equalToConstant: 20),
+      scheduleButton.widthAnchor.constraint(equalToConstant: 90),
       scheduleButton.trailingAnchor.constraint(equalTo: dateLabel.trailingAnchor),
-      scheduleButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -4)
+      scheduleButton.bottomAnchor.constraint(
+        equalTo: containerView.bottomAnchor,
+        constant: -16
+      )
     ])
   }
 }

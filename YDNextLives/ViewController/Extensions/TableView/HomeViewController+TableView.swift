@@ -10,10 +10,24 @@ import UIKit
 // MARK: Data Source
 extension HomeViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 3
+    if shimmer {
+      return numberOfShimmers
+    }
+
+    return 8
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if shimmer {
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: LiveShimmerTableViewCell.identifier, for: indexPath) as? LiveShimmerTableViewCell
+      else {
+        fatalError("dequeue LiveShimmerTableViewCell")
+      }
+
+      cell.shimmerCell()
+      return cell
+    }
+
     guard let cell = tableView.dequeueReusableCell(
       withIdentifier: LiveTableViewCell.identifier,
       for: indexPath
@@ -22,13 +36,16 @@ extension HomeViewController: UITableViewDataSource {
       fatalError("dequeue LiveTableViewCell")
     }
 
+    cell.setStyle(actived: indexPath.row == 0)
+    cell.config()
+
     return cell
   }
 }
 
 // MARK: Delegate
 extension HomeViewController: UITableViewDelegate {
-  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    return tableView.dequeueReusableHeaderFooterView(withIdentifier: LiveHeaderView.identifier)
+  func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    return tableView.dequeueReusableHeaderFooterView(withIdentifier: LiveFooterView.identifier)
   }
 }

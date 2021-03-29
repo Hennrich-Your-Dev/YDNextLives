@@ -24,6 +24,7 @@ public class YDNextLivesCoordinator {
 
     if #available(iOS 13.0, *) {
       let appearance = UINavigationBarAppearance()
+      let appearanceStandard = UINavigationBarAppearance()
 
       appearance.shadowImage = UIImage()
       appearance.backgroundImage = UIImage()
@@ -32,8 +33,13 @@ public class YDNextLivesCoordinator {
       appearance.backgroundColor = .white
       appearance.shadowColor = nil
 
+      appearanceStandard.titleTextAttributes = [.foregroundColor: UIColor.Zeplin.black]
+      appearanceStandard.backgroundColor = .white
+      appearanceStandard.shadowColor = UIColor.Zeplin.grayDisabled
+
+
       nav.navigationBar.compactAppearance = appearance
-      nav.navigationBar.standardAppearance = appearance
+      nav.navigationBar.standardAppearance = appearanceStandard
       nav.navigationBar.scrollEdgeAppearance = appearance
     } else {
       nav.navigationBar.shadowImage = UIImage()

@@ -13,6 +13,8 @@ extension HomeViewController {
     title = "próximas lives"
 
     navigationItem.rightBarButtonItems = [createRightButton()]
+
+    createTableView()
   }
 
   // Bar Item
@@ -32,17 +34,25 @@ extension HomeViewController {
     tableView.tableFooterView = UIView()
     tableView.backgroundColor = .clear
     tableView.rowHeight = 142
-    tableView.estimatedSectionHeaderHeight = 24
+    tableView.estimatedSectionFooterHeight = 20
     tableView.dataSource = self
     tableView.delegate = self
 
+    // Cell
     tableView.register(
       LiveTableViewCell.self,
       forCellReuseIdentifier: LiveTableViewCell.identifier
     )
 
+    // Shimmer
     tableView.register(
-      LiveHeaderView.self,
+      LiveShimmerTableViewCell.self,
+      forCellReuseIdentifier: LiveShimmerTableViewCell.identifier
+    )
+
+    // Footer
+    tableView.register(
+      LiveFooterView.self,
       forHeaderFooterViewReuseIdentifier: LiveHeaderView.identifier
     )
 
