@@ -9,7 +9,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "YDNextLives"
-  spec.version      = "1.0.7"
+  spec.version      = "1.0.8"
   spec.summary      = "A short description of YDNextLives."
   spec.homepage     = "https://yourdev.com.br"
   spec.license      = "MIT"
@@ -23,8 +23,10 @@ Pod::Spec.new do |spec|
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   spec.source       = { :git => "git@github.com:Hennrich-Your-Dev/YDNextLives.git", :tag => "#{spec.version}" }
-  spec.pod_target_xcconfig = {
-    "INFOPLIST_FILE" => "${PODS_TARGET_SRCROOT}/YDNextLives/Info.plist"
+
+  spec.info_plist = {
+    "NSCalendarsUsageDescription" => "Permissão para salvar eventos em sua agenda",
+    "NSContactsUsageDescription" => "Permissão para poder compartilhar com contatos"
   }
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
