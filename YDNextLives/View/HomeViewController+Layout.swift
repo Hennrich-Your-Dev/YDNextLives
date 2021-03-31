@@ -20,6 +20,7 @@ extension HomeViewController {
 
     createTableView()
     createEmptyState()
+    createErrorState()
   }
 
   // Bar Item
@@ -54,7 +55,7 @@ extension HomeViewController {
       )
     )
     tableView.backgroundColor = .clear
-    tableView.rowHeight = 154
+    tableView.rowHeight = cellHeightSize
     tableView.dataSource = self
 
     // Cell
@@ -86,6 +87,14 @@ extension HomeViewController {
     view.addSubview(emptyStateView)
     emptyStateView.isHidden = true
 
+    emptyStateView.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      emptyStateView.topAnchor.constraint(equalTo: view.topAnchor),
+      emptyStateView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      emptyStateView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      emptyStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+    ])
+
     // Icon
     let icon = UIImageView()
     icon.image = Icons.scheduleAction
@@ -95,13 +104,18 @@ extension HomeViewController {
     icon.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       icon.centerXAnchor.constraint(equalTo: emptyStateView.centerXAnchor),
-      icon.centerYAnchor.constraint(
-        equalToSystemSpacingBelow: emptyStateView.centerYAnchor,
-        multiplier: -1
-      ),
       icon.widthAnchor.constraint(equalToConstant: 116),
       icon.heightAnchor.constraint(equalToConstant: 116)
     ])
+    NSLayoutConstraint(
+      item: icon,
+      attribute: .centerY,
+      relatedBy: .equal,
+      toItem: emptyStateView,
+      attribute: .centerY,
+      multiplier: 0.8,
+      constant: -1
+    ).isActive = true
 
     // Title
     let titleLabel = UILabel()
@@ -130,7 +144,7 @@ extension HomeViewController {
     messageLabel.textColor = UIColor.Zeplin.grayLight
     messageLabel.numberOfLines = 0
     messageLabel.textAlignment = .center
-    messageLabel.text = .loremIpsum()
+    messageLabel.text = .loremIpsum(ofLength: 64)
     emptyStateView.addSubview(messageLabel)
 
     messageLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -148,5 +162,74 @@ extension HomeViewController {
         constant: 8
       )
     ])
+  }
+
+  // Error State
+  func createErrorState() {
+    view.addSubview(errorStateView)
+    errorStateView.isHidden = true
+
+    errorStateView.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      errorStateView.topAnchor.constraint(equalTo: view.topAnchor),
+      errorStateView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      errorStateView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      errorStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+    ])
+
+    // Icon
+    let icon = UIImageView()
+    icon.image = Icons.sadFace
+    icon.tintColor = UIColor.Zeplin.grayNight
+    errorStateView.addSubview(icon)
+
+    icon.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      icon.centerXAnchor.constraint(equalTo: errorStateView.centerXAnchor),
+      icon.widthAnchor.constraint(equalToConstant: 116),
+      icon.heightAnchor.constraint(equalToConstant: 116)
+    ])
+    NSLayoutConstraint(
+      item: icon,
+      attribute: .centerY,
+      relatedBy: .equal,
+      toItem: errorStateView,
+      attribute: .centerY,
+      multiplier: 0.8,
+      constant: -1
+    ).isActive = true
+
+    // Title
+    let titleLabel = UILabel()
+    titleLabel.font = .systemFont(ofSize: 16, weight: .bold)
+    titleLabel.textColor = UIColor.Zeplin.black
+    titleLabel.text = "ooops, tivemos um problema"
+    titleLabel.textAlignment = .center
+    errorStateView.addSubview(titleLabel)
+
+    titleLabel.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      titleLabel.leadingAnchor.constraint(
+        equalTo: errorStateView.leadingAnchor,
+        constant: 24
+      ),
+      titleLabel.trailingAnchor.constraint(
+        equalTo: errorStateView.trailingAnchor,
+        constant: -24
+      ),
+      titleLabel.topAnchor.constraint(equalTo: icon.bottomAnchor, constant: 20)
+    ])
+
+    // Button
+    errorStateView.addSubview(errorStateButton)
+
+    errorStateButton.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      errorStateButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 32),
+      errorStateButton.centerXAnchor.constraint(equalTo: errorStateView.centerXAnchor),
+      errorStateButton.widthAnchor.constraint(equalToConstant: 167)
+    ])
+
+    errorStateButton.callback = onRefreshAction
   }
 }

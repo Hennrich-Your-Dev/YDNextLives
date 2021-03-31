@@ -44,6 +44,16 @@ extension HomeViewController: UITableViewDataSource {
 
     cell.config(withLive: currentLive)
 
+    cell.callback = { [weak self] in
+      guard let self = self else { return }
+
+      self.schedule(event: currentLive) { success in
+        if success {
+          tableView.reloadRows(at: [indexPath], with: .fade)
+        }
+      }
+    }
+
     return cell
   }
 }

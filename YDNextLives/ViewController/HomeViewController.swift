@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import YDB2WComponents
 
 class HomeViewController: UIViewController {
   // MARK: Properties
@@ -18,6 +19,7 @@ class HomeViewController: UIViewController {
   let tableView = UITableView()
   let emptyStateView = UIView()
   let errorStateView = UIView()
+  let errorStateButton = YDWireButton(withTitle: "atualizar lista de lives")
 
   // MARK: View life cycle
   override func viewDidLoad() {
@@ -25,6 +27,7 @@ class HomeViewController: UIViewController {
     setUpLayouts()
     setUpBinds()
     viewModel?.getNextLives()
+    tableView.contentOffset = CGPoint(x: 0, y: -50)
   }
 }
 
@@ -32,5 +35,30 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
   @objc func onBackAction() {
     viewModel?.onExit()
+  }
+
+  @objc func onRefreshAction(_ sender: UIButton) {
+    self.emptyStateView.isHidden = true
+    self.errorStateView.isHidden = true
+    self.tableView.contentOffset = .zero
+    viewModel?.getNextLives()
+  }
+
+  func showEmptyState() {
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self else { return }
+      self.tableView.isHidden = true
+      self.errorStateView.isHidden = true
+      self.emptyStateView.isHidden = false
+    }
+  }
+
+  func showErrorState() {
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self else { return }
+      self.tableView.isHidden = true
+      self.emptyStateView.isHidden = true
+      self.errorStateView.isHidden = false
+    }
   }
 }

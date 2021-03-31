@@ -37,7 +37,6 @@ public class YDNextLivesCoordinator {
       appearanceStandard.backgroundColor = .white
       appearanceStandard.shadowColor = UIColor.Zeplin.grayDisabled
 
-
       nav.navigationBar.compactAppearance = appearance
       nav.navigationBar.standardAppearance = appearanceStandard
       nav.navigationBar.scrollEdgeAppearance = appearance

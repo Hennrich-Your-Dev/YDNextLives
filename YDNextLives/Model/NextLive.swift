@@ -17,6 +17,7 @@ class NextLive: Codable {
   let finalDate: String?
   let name: String?
   let description: String?
+  var alreadyScheduled = false
 
   // MARK: Computed variables
   var formatedDate: String? {
@@ -24,26 +25,31 @@ class NextLive: Codable {
           let finalDateFormat = finalDate?.date(withFormat: "yyyy-MM-dd'T'HH:mm:ss")
     else { return nil }
 
-    if initialDateFormat.isInToday {
-      let todayDate = "ao vivo •"
-      let startTime = initialDateFormat.toFormat("HH:mm")
-      let endTime = finalDateFormat.toFormat("HH:mm")
+    let startTime = initialDateFormat.toFormat("HH:mm")
+    let endTime = finalDateFormat.toFormat("HH:mm")
+    let now = Date()
 
-      return todayDate + " \(startTime)-\(endTime)"
+    if initialDateFormat.isInToday &&
+        now.isBetween(initialDateFormat, and: finalDateFormat) {
+      return "ao vivo • \(startTime)-\(endTime)"
     } else {
-      let startTime = initialDateFormat.toFormat("dd/MM '•' HH:mm")
-      let endTime = finalDateFormat.toFormat("HH:mm")
-      return "\(startTime)-\(endTime)"
+      return "\(initialDateFormat.toFormat("dd/MM '•' ")) \(startTime)-\(endTime)"
     }
   }
 
-  var isToday: Bool {
-    guard let date = initialDate?.date(withFormat: "yyyy-MM-dd'T'HH:mm:ss")
-    else {
-      return false
+  var isAvailable: Bool {
+    guard let initialDateFormat = initialDate?.date(withFormat: "yyyy-MM-dd'T'HH:mm:ss"),
+          let finalDateFormat = finalDate?.date(withFormat: "yyyy-MM-dd'T'HH:mm:ss")
+    else { return false }
+
+    let now = Date()
+
+    if initialDateFormat.isInToday &&
+        now.isBetween(initialDateFormat, and: finalDateFormat) {
+      return !alreadyScheduled
     }
 
-    return date.isInToday
+    return false
   }
 
   // MARK: CodingKeys
@@ -76,12 +82,12 @@ class NextLive: Codable {
 
 // MARK: Mock
 extension NextLive {
-  static func fromMock() -> NextLive {
+  static func fromMock(startTime: String? = nil, endTime: String? = nil) -> NextLive {
     return NextLive(
       liveId: "\(Int.random(in: 0..<100))",
       photo: "https://miro.medium.com/max/875/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
-      initialDate: "2021-04-01T21:00:00",
-      finalDate: "2021-04-01T22:00:00",
+      initialDate: startTime ?? "2021-04-01T21:00:00",
+      finalDate: endTime ?? "2021-04-01T22:00:00",
       name: "Nome da Live",
       description: .loremIpsum()
     )

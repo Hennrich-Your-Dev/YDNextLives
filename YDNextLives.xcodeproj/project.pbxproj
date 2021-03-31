@@ -16,6 +16,7 @@
 		C18E49E4260BE392008A0ABD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18E49E3260BE392008A0ABD /* HomeViewController.swift */; };
 		C18E49E9260BEB2C008A0ABD /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18E49E8260BEB2C008A0ABD /* HomeViewModel.swift */; };
 		C18E4A11260C0E87008A0ABD /* HomeViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18E4A10260C0E87008A0ABD /* HomeViewController+Layout.swift */; };
+		C1A5CC1C261508B600C5FE27 /* HomeViewController+EventKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5CC1B261508B600C5FE27 /* HomeViewController+EventKit.swift */; };
 		C1E0628626116BCA00738E6F /* LiveShimmerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E0628526116BCA00738E6F /* LiveShimmerTableViewCell.swift */; };
 		E6C643578A9CF0FD52520534 /* Pods_YDNextLives.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B221278DE017FA02D7E29B17 /* Pods_YDNextLives.framework */; };
 /* End PBXBuildFile section */
@@ -35,6 +36,7 @@
 		C18E49E3260BE392008A0ABD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C18E49E8260BEB2C008A0ABD /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		C18E4A10260C0E87008A0ABD /* HomeViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Layout.swift"; sourceTree = "<group>"; };
+		C1A5CC1B261508B600C5FE27 /* HomeViewController+EventKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+EventKit.swift"; sourceTree = "<group>"; };
 		C1E0628526116BCA00738E6F /* LiveShimmerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveShimmerTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +80,7 @@
 		C16159C52610E9BB00CDF36C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C1A5CC1A261508A400C5FE27 /* EventKit */,
 				C1388B37261234CC0070B128 /* Binds */,
 				C16159C62610E9C100CDF36C /* TableView */,
 			);
@@ -152,8 +155,8 @@
 		C18E49E1260BE021008A0ABD /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				C16159C52610E9BB00CDF36C /* Extensions */,
 				C18E49E3260BE392008A0ABD /* HomeViewController.swift */,
+				C16159C52610E9BB00CDF36C /* Extensions */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -161,8 +164,8 @@
 		C18E49E6260BEB10008A0ABD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C18130132610241300F0AEE7 /* Extensions */,
 				C18E4A10260C0E87008A0ABD /* HomeViewController+Layout.swift */,
+				C18130132610241300F0AEE7 /* Extensions */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -170,9 +173,25 @@
 		C18E49E7260BEB14008A0ABD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C1A5CC15261505D100C5FE27 /* Extensions */,
 				C18E49E8260BEB2C008A0ABD /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C1A5CC15261505D100C5FE27 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C1A5CC1A261508A400C5FE27 /* EventKit */ = {
+			isa = PBXGroup;
+			children = (
+				C1A5CC1B261508B600C5FE27 /* HomeViewController+EventKit.swift */,
+			);
+			path = EventKit;
 			sourceTree = "<group>";
 		};
 		F154CA5FBC3B167ADDACACC2 /* Frameworks */ = {
@@ -307,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1A5CC1C261508B600C5FE27 /* HomeViewController+EventKit.swift in Sources */,
 				C1388B34261226F10070B128 /* NextLive.swift in Sources */,
 				C1388B39261235130070B128 /* HomeViewController+Binds.swift in Sources */,
 				C16159C82610EA3A00CDF36C /* HomeViewController+TableView.swift in Sources */,

@@ -12,6 +12,7 @@ import YDB2WAssets
 
 class LiveTableViewCell: UITableViewCell {
   // MARK: Properties
+  var callback: (() -> Void)?
 
   // MARK: Components
   let containerView = UIView()
@@ -40,34 +41,32 @@ class LiveTableViewCell: UITableViewCell {
     dateLabel.text = nil
     nameLabel.text = nil
     descriptionLabel.text = nil
-//    photoImageView.stopShimmer()
-//    dateLabel.stopShimmer()
-//    nameLabel.stopShimmer()
-//    descriptionLabel.stopShimmer()
-//    scheduleButton.stopShimmer()
+    callback = nil
   }
 
   // MARK: Actions
   func setStyle(actived: Bool) {
-    dateLabel.textColor = actived ? UIColor.Zeplin.redNight : UIColor.Zeplin.grayNight
+    dateLabel.textColor = actived ? UIColor.Zeplin.redNight : UIColor.Zeplin.grayLight
     scheduleButton.tintColor = actived ? UIColor.Zeplin.grayNight : UIColor.Zeplin.redBranding
-    scheduleButton.setTitleColor(
-      actived ? UIColor.Zeplin.grayNight : UIColor.Zeplin.redBranding,
-      for: .normal
-    )
+
+    scheduleButton.setAttributedTitle(
+      NSAttributedString(
+        string: "adicionar",
+        attributes: [
+          NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
+          NSAttributedString.Key.foregroundColor: actived ? UIColor.Zeplin.grayNight : UIColor.Zeplin.redBranding
+        ]
+      ),
+      for: .normal)
     scheduleButton.isEnabled = !actived
   }
 
   func config(withLive live: NextLive) {
-    photoImageView.stopShimmer()
-    dateLabel.stopShimmer()
-    nameLabel.stopShimmer()
-    descriptionLabel.stopShimmer()
-    scheduleButton.stopShimmer()
+    photoImageView.setImage(live.photo)
     dateLabel.text = live.formatedDate
     nameLabel.text = live.name
     descriptionLabel.text = live.description
-    setStyle(actived: live.isToday)
+    setStyle(actived: live.isAvailable)
   }
 
   func shimmerCell() {
@@ -79,6 +78,10 @@ class LiveTableViewCell: UITableViewCell {
       self.descriptionLabel.startShimmer()
       self.scheduleButton.startShimmer()
     }
+  }
+
+  @objc func onButtonAction() {
+    callback?()
   }
 }
 
@@ -113,6 +116,7 @@ extension LiveTableViewCell {
   // Photo
   private func createPhotoImageView() {
     photoImageView.layer.cornerRadius = 4
+    photoImageView.layer.masksToBounds = true
     photoImageView.backgroundColor = UIColor.Zeplin.graySurface
     containerView.addSubview(photoImageView)
 
@@ -177,10 +181,20 @@ extension LiveTableViewCell {
   // Schedule Button
   private func createScheduleButton() {
     scheduleButton.tintColor = UIColor.Zeplin.redBranding
-    scheduleButton.setTitleColor(UIColor.Zeplin.redBranding, for: .normal)
-    scheduleButton.setTitle("adicionar", for: .normal)
+    let title = "adicionar"
+    let attributeString = NSMutableAttributedString(string: title)
+
+    attributeString.addAttributes(
+      [
+        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
+        NSAttributedString.Key.foregroundColor: UIColor.Zeplin.redBranding
+      ],
+      range: NSRange(location: 0, length: title.utf8.count)
+    )
+
+    scheduleButton.setAttributedTitle(attributeString, for: .normal)
     scheduleButton.setImage(Icons.scheduleLive, for: .normal)
-    scheduleButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
+    scheduleButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
     scheduleButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
     scheduleButton.contentHorizontalAlignment = .right
     containerView.addSubview(scheduleButton)
@@ -192,5 +206,7 @@ extension LiveTableViewCell {
       scheduleButton.trailingAnchor.constraint(equalTo: dateLabel.trailingAnchor),
       scheduleButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -4)
     ])
+
+    scheduleButton.addTarget(self, action: #selector(onButtonAction), for: .touchUpInside)
   }
 }

@@ -18,5 +18,9 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Permissão para salvar eventos em sua agenda</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Permissão para poder compartilhar com contatos</string>
 </dict>
 </plist>

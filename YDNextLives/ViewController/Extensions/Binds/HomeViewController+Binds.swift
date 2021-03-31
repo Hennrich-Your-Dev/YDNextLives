@@ -16,8 +16,8 @@ extension HomeViewController {
 
       if isLoading {
         DispatchQueue.main.async {
+          self.tableView.isHidden = false
           self.tableView.reloadData()
-          self.tableView.contentOffset = CGPoint(x: 0, y: -50)
         }
       }
     }
@@ -26,12 +26,16 @@ extension HomeViewController {
       guard let self = self else { return }
 
       if list.isEmpty {
-        self.tableView.isHidden = true
-        self.emptyStateView.isHidden = false
+        self.showEmptyState()
       } else {
         self.shimmer = false
         self.tableView.reloadData()
       }
+    }
+
+    viewModel?.error.bind { [weak self] _ in
+      guard let self = self else { return }
+      self.showErrorState()
     }
   }
 }
