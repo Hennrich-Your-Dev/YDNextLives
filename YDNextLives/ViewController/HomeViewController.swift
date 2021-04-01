@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
   let cellHeightSize: CGFloat = 154
   var shimmer = true
   var numberOfShimmers = 0
+  var eventKitCallback: ((Bool) -> Void)?
 
   // MARK: Components
   let tableView = UITableView()

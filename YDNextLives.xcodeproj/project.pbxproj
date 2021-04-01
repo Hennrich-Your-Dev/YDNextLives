@@ -173,17 +173,9 @@
 		C18E49E7260BEB14008A0ABD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				C1A5CC15261505D100C5FE27 /* Extensions */,
 				C18E49E8260BEB2C008A0ABD /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		C1A5CC15261505D100C5FE27 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C1A5CC1A261508A400C5FE27 /* EventKit */ = {

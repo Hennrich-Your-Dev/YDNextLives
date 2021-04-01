@@ -54,12 +54,12 @@ class NextLive: Codable {
 
   // MARK: CodingKeys
   enum CodingKeys: String, CodingKey {
-    case liveId
+    case liveId = "_id"
     case photo
     case initialDate
     case finalDate
-    case name
-    case description
+    case name = "liveTitle"
+    case description = "liveDescription"
   }
 
   // MARK: Init

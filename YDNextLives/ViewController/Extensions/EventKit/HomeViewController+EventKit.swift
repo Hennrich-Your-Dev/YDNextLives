@@ -10,6 +10,7 @@ import EventKitUI
 
 extension HomeViewController {
   func schedule(event: NextLive, onCompletion completion: @escaping (Bool) -> Void) {
+    eventKitCallback = completion
     switch EKEventStore.authorizationStatus(for: .event) {
       case .notDetermined:
         let eventStore = EKEventStore()
@@ -35,17 +36,21 @@ extension HomeViewController {
           let endTime = live.finalDate?.date(withFormat: "yyyy-MM-dd'T'HH:mm:ss")
     else { return }
 
-    let eventVC = EKEventEditViewController()
-    eventVC.editViewDelegate = self
-    eventVC.eventStore = EKEventStore()
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self else { return }
 
-    let event = EKEvent(eventStore: eventVC.eventStore)
-    event.title = live.name
-    event.startDate = startTime
-    event.endDate = endTime
+      let eventVC = EKEventEditViewController()
+      eventVC.editViewDelegate = self
+      eventVC.eventStore = EKEventStore()
 
-    eventVC.event = event
-    present(eventVC, animated: true)
+      let event = EKEvent(eventStore: eventVC.eventStore)
+      event.title = live.name
+      event.startDate = startTime
+      event.endDate = endTime
+
+      eventVC.event = event
+      self.present(eventVC, animated: true)
+    }
   }
 }
 
@@ -55,9 +60,7 @@ extension HomeViewController: EKEventEditViewDelegate {
     _ controller: EKEventEditViewController,
     didCompleteWith action: EKEventEditViewAction
   ) {
-    if action == .saved {
-      //
-    }
+    eventKitCallback?(action == .saved)
 
     controller.dismiss(animated: true, completion: nil)
   }

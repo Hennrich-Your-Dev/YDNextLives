@@ -48,7 +48,10 @@ extension HomeViewController: UITableViewDataSource {
       guard let self = self else { return }
 
       self.schedule(event: currentLive) { success in
+        self.eventKitCallback = nil
+
         if success {
+          currentLive.alreadyScheduled = true
           tableView.reloadRows(at: [indexPath], with: .fade)
         }
       }
