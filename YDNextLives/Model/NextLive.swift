@@ -43,23 +43,26 @@ class NextLive: Codable {
     else { return false }
 
     let now = Date()
+    return !now.isBetween(initialDateFormat, and: finalDateFormat) && !alreadyScheduled
+  }
 
-    if initialDateFormat.isInToday &&
-        now.isBetween(initialDateFormat, and: finalDateFormat) {
-      return !alreadyScheduled
-    }
+  var isLive: Bool {
+    guard let initialDateFormat = initialDate?.date(withFormat: "yyyy-MM-dd'T'HH:mm:ss"),
+          let finalDateFormat = finalDate?.date(withFormat: "yyyy-MM-dd'T'HH:mm:ss")
+    else { return false }
 
-    return false
+    let now = Date()
+    return now.isBetween(initialDateFormat, and: finalDateFormat)
   }
 
   // MARK: CodingKeys
   enum CodingKeys: String, CodingKey {
-    case liveId = "_id"
+    case liveId
     case photo
     case initialDate
     case finalDate
-    case name = "liveTitle"
-    case description = "liveDescription"
+    case name
+    case description
   }
 
   // MARK: Init

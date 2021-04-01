@@ -49,7 +49,7 @@ extension HomeViewModel: HomeViewModelDelegate {
       guard let self = self else { return }
       self.loading.value = false
       self.nextLives.value = [
-        NextLive.fromMock(startTime: "2021-03-31T13:20:00", endTime: "2021-03-31T19:00:00"),
+        NextLive.fromMock(startTime: "2021-04-01T13:20:00", endTime: "2021-04-01T19:00:00"),
         NextLive.fromMock(),
         NextLive.fromMock(),
         NextLive.fromMock(),

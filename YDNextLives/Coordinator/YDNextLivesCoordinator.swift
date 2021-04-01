@@ -34,19 +34,21 @@ public class YDNextLivesCoordinator {
       appearance.shadowColor = nil
 
       appearanceStandard.titleTextAttributes = [.foregroundColor: UIColor.Zeplin.black]
-      appearanceStandard.backgroundColor = .white
+      appearanceStandard.shadowImage = UIImage()
+      appearanceStandard.backgroundImage = UIImage()
       appearanceStandard.shadowColor = UIColor.Zeplin.grayDisabled
 
       nav.navigationBar.compactAppearance = appearance
       nav.navigationBar.standardAppearance = appearanceStandard
       nav.navigationBar.scrollEdgeAppearance = appearance
     } else {
+      nav.navigationBar.isTranslucent = true
       nav.navigationBar.shadowImage = UIImage()
       nav.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.Zeplin.black]
       nav.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.Zeplin.black]
+      nav.navigationBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
     }
 
-    nav.navigationBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
     nav.navigationBar.tintColor = UIColor.Zeplin.redBranding
     return nav
   }()

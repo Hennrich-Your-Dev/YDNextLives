@@ -26,6 +26,8 @@ public class Icons {
   public static let circleDefault = UIImage(named: "iconCircleDefault", in: podsBundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
 
   public static let circleDefaultOff = UIImage(named: "iconCircleDefaultOff", in: podsBundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+
+  public static let circleDone = UIImage(named: "iconCircleDone", in: podsBundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
   
   public static let circleUser = UIImage(named: "iconCircleUser", in: podsBundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
 

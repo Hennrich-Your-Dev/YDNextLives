@@ -43,7 +43,7 @@ extension HomeViewController {
         x: 0,
         y: 0,
         width: 0,
-        height: 10
+        height: 24
       )
     )
     tableView.tableFooterView = UIView(
