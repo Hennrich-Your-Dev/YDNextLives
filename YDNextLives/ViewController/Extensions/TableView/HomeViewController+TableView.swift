@@ -8,6 +8,7 @@
 import UIKit
 
 import YDExtensions
+import YDB2WComponents
 
 // MARK: Data Source
 extension HomeViewController: UITableViewDataSource {
@@ -51,6 +52,7 @@ extension HomeViewController: UITableViewDataSource {
         self.eventKitCallback = nil
 
         if success {
+          YDPopOverMessage.show("adicionado ao calendário!", icon: nil)
           currentLive.alreadyScheduled = true
           tableView.reloadRows(at: [indexPath], with: .fade)
         }
