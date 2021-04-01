@@ -52,7 +52,9 @@ extension HomeViewController: UITableViewDataSource {
         self.eventKitCallback = nil
 
         if success {
-          YDPopOverMessage.show("adicionado ao calendário!", icon: nil)
+          Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            YDPopOverMessage.show("adicionado ao calendário!", icon: nil)
+          }
           currentLive.alreadyScheduled = true
           tableView.reloadRows(at: [indexPath], with: .fade)
         }
