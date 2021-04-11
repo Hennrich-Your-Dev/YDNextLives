@@ -9,6 +9,7 @@ import UIKit
 
 import YDExtensions
 import YDB2WModels
+import YDUtilities
 
 // MARK: Delegate
 public protocol YDStoreAndProductDelegate: AnyObject {
@@ -46,6 +47,8 @@ public class YDStoreAndProductView: UIView {
   let textView = UITextView()
   let tableView = UITableView()
 
+  let shimmerTextView = UIView()
+
   // MARK: Init
   public init() {
     super.init(frame: .zero)
@@ -62,7 +65,7 @@ public class YDStoreAndProductView: UIView {
   }
 
   // MARK: Actions
-  private func updateLayoutWithProduct() {
+  func updateLayoutWithProduct() {
     guard let product = self.product else { return }
     productCardView.product = product
 
@@ -71,13 +74,18 @@ public class YDStoreAndProductView: UIView {
 
     if description == nil {
       segmentedControl.setEnabled(false, forSegmentAt: 0)
+      textView.text = ""
     } else {
+      segmentedControl.setEnabled(true, forSegmentAt: 0)
       segmentedControl.selectedSegmentIndex = 0
       changeSegmentControl(0)
+      textView.attributedText = description
     }
 
     if technicalInformation.isEmpty {
       segmentedControl.setEnabled(false, forSegmentAt: 1)
+    } else {
+      segmentedControl.setEnabled(true, forSegmentAt: 1)
     }
   }
 

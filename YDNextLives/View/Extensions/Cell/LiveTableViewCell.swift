@@ -16,6 +16,7 @@ class LiveTableViewCell: UITableViewCell {
 
   // MARK: Components
   let containerView = UIView()
+  let photoBackgroundView = UIView()
   let photoImageView = UIImageView()
   let dateLabel = UILabel()
   let nameLabel = UILabel()
@@ -37,7 +38,10 @@ class LiveTableViewCell: UITableViewCell {
 
   override func prepareForReuse() {
     super.prepareForReuse()
-    photoImageView.image = nil
+    photoImageView.image = Icons.imagePlaceHolder?
+      .withAlignmentRectInsets(
+        UIEdgeInsets(top: -16, left: -16, bottom: -16, right: -16)
+      )
     dateLabel.text = nil
     nameLabel.text = nil
     descriptionLabel.text = nil
@@ -62,12 +66,14 @@ class LiveTableViewCell: UITableViewCell {
   }
 
   func config(withLive live: NextLive) {
-    photoImageView.setImage(live.photo)
+    photoImageView.setImage(live.photo, placeholder: Icons.imagePlaceHolder)
     dateLabel.text = live.formatedDate
     nameLabel.text = live.name
     descriptionLabel.text = live.description
     setStyle(isAvailable: live.isAvailable)
-    dateLabel.textColor = live.isLive ? UIColor.Zeplin.redNight : UIColor.Zeplin.grayLight
+    dateLabel.textColor = live.isLive ?
+      UIColor.Zeplin.redNight :
+      UIColor.Zeplin.grayLight
   }
 
   func shimmerCell() {
@@ -116,18 +122,48 @@ extension LiveTableViewCell {
 
   // Photo
   private func createPhotoImageView() {
+    photoBackgroundView.layer.cornerRadius = 4
+    photoBackgroundView.layer.masksToBounds = true
+    photoBackgroundView.backgroundColor = UIColor.Zeplin.graySurface
+    containerView.addSubview(photoBackgroundView)
+
+    photoBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      photoBackgroundView.widthAnchor.constraint(equalToConstant: 116),
+      photoBackgroundView.heightAnchor.constraint(equalToConstant: 116),
+      photoBackgroundView.topAnchor.constraint(
+        equalTo: containerView.topAnchor,
+        constant: 10
+      ),
+      photoBackgroundView.leadingAnchor.constraint(
+        equalTo: containerView.leadingAnchor,
+        constant: 10
+      ),
+      photoBackgroundView.bottomAnchor.constraint(
+        equalTo: containerView.bottomAnchor,
+        constant: -16
+      )
+    ])
+
     photoImageView.layer.cornerRadius = 4
     photoImageView.layer.masksToBounds = true
-    photoImageView.backgroundColor = UIColor.Zeplin.graySurface
+    photoImageView.image = Icons.imagePlaceHolder?
+      .withAlignmentRectInsets(
+        UIEdgeInsets(top: -16, left: -16, bottom: -16, right: -16)
+      )
+    photoImageView.tintColor = UIColor.Zeplin.grayLight
     containerView.addSubview(photoImageView)
 
     photoImageView.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       photoImageView.widthAnchor.constraint(equalToConstant: 116),
       photoImageView.heightAnchor.constraint(equalToConstant: 116),
-      photoImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
-      photoImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
-      photoImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16)
+      photoImageView.centerXAnchor.constraint(
+        equalTo: photoBackgroundView.centerXAnchor
+      ),
+      photoImageView.centerYAnchor.constraint(
+        equalTo: photoBackgroundView.centerYAnchor
+      )
     ])
   }
 

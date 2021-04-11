@@ -228,8 +228,7 @@ extension HomeViewController {
     errorStateButton.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       errorStateButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 32),
-      errorStateButton.centerXAnchor.constraint(equalTo: errorStateView.centerXAnchor),
-      errorStateButton.widthAnchor.constraint(equalToConstant: 167)
+      errorStateButton.centerXAnchor.constraint(equalTo: errorStateView.centerXAnchor)
     ])
 
     errorStateButton.callback = onRefreshAction

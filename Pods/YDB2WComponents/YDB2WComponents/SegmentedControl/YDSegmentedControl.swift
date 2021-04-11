@@ -40,7 +40,7 @@ public class YDSegmentedControl: UIView {
     segmentedControl.setTitleTextAttributes(
       [
         NSAttributedString.Key.foregroundColor: UIColor.Zeplin.grayLight,
-        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .medium)
+        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)
       ],
       for: .normal
     )
@@ -103,8 +103,10 @@ public class YDSegmentedControl: UIView {
       return segmentedControl.selectedSegmentIndex
     }
     set {
-      segmentedControl.selectedSegmentIndex = newValue
-      segmentedControlValueChanged(segmentedControl)
+      DispatchQueue.main.async {
+        self.segmentedControl.selectedSegmentIndex = newValue
+        self.segmentedControlValueChanged(self.segmentedControl)
+      }
     }
   }
 
