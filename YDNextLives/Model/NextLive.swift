@@ -20,6 +20,14 @@ class NextLive: Codable {
   var alreadyScheduled = false
 
   // MARK: Computed variables
+  var finalDateAsDate: Date? {
+    finalDate?.date(withFormat: "yyyy-MM-dd'T'HH:mm:ss")
+  }
+
+  var initialDateAsDate: Date? {
+    initialDate?.date(withFormat: "yyyy-MM-dd'T'HH:mm:ss")
+  }
+
   var formatedDate: String? {
     guard let initialDateFormat = initialDate?.date(withFormat: "yyyy-MM-dd'T'HH:mm:ss"),
           let finalDateFormat = finalDate?.date(withFormat: "yyyy-MM-dd'T'HH:mm:ss")
@@ -85,9 +93,9 @@ class NextLive: Codable {
 
 // MARK: Mock
 extension NextLive {
-  static func fromMock(startTime: String? = nil, endTime: String? = nil) -> NextLive {
+  static func fromMock(id: String, startTime: String? = nil, endTime: String? = nil) -> NextLive {
     return NextLive(
-      liveId: "\(Int.random(in: 0..<100))",
+      liveId: id,
       photo: "https://miro.medium.com/max/875/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
       initialDate: startTime ?? "2021-04-01T21:00:00",
       finalDate: endTime ?? "2021-04-01T22:00:00",

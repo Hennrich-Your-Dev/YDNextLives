@@ -10,6 +10,7 @@
 		C1388B34261226F10070B128 /* NextLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1388B33261226F10070B128 /* NextLive.swift */; };
 		C1388B39261235130070B128 /* HomeViewController+Binds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1388B38261235130070B128 /* HomeViewController+Binds.swift */; };
 		C16159C82610EA3A00CDF36C /* HomeViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16159C72610EA3A00CDF36C /* HomeViewController+TableView.swift */; };
+		C16E758626248DE500CFE698 /* AlreadyScheduledLives.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16E758526248DE500CFE698 /* AlreadyScheduledLives.swift */; };
 		C18130162610248D00F0AEE7 /* LiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18130152610248D00F0AEE7 /* LiveTableViewCell.swift */; };
 		C18E49AA260BD4D6008A0ABD /* YDNextLives.h in Headers */ = {isa = PBXBuildFile; fileRef = C18E49A8260BD4D6008A0ABD /* YDNextLives.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C18E49C3260BDC77008A0ABD /* YDNextLivesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18E49C2260BDC77008A0ABD /* YDNextLivesCoordinator.swift */; };
@@ -28,6 +29,7 @@
 		C1388B33261226F10070B128 /* NextLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLive.swift; sourceTree = "<group>"; };
 		C1388B38261235130070B128 /* HomeViewController+Binds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Binds.swift"; sourceTree = "<group>"; };
 		C16159C72610EA3A00CDF36C /* HomeViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+TableView.swift"; sourceTree = "<group>"; };
+		C16E758526248DE500CFE698 /* AlreadyScheduledLives.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlreadyScheduledLives.swift; sourceTree = "<group>"; };
 		C18130152610248D00F0AEE7 /* LiveTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTableViewCell.swift; sourceTree = "<group>"; };
 		C18E49A5260BD4D6008A0ABD /* YDNextLives.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YDNextLives.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C18E49A8260BD4D6008A0ABD /* YDNextLives.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDNextLives.h; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				C1388B33261226F10070B128 /* NextLive.swift */,
+				C16E758526248DE500CFE698 /* AlreadyScheduledLives.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				C16159C82610EA3A00CDF36C /* HomeViewController+TableView.swift in Sources */,
 				C1E0628626116BCA00738E6F /* LiveShimmerTableViewCell.swift in Sources */,
 				C18E49C3260BDC77008A0ABD /* YDNextLivesCoordinator.swift in Sources */,
+				C16E758626248DE500CFE698 /* AlreadyScheduledLives.swift in Sources */,
 				C18130162610248D00F0AEE7 /* LiveTableViewCell.swift in Sources */,
 				C18E49E9260BEB2C008A0ABD /* HomeViewModel.swift in Sources */,
 				C18E49E4260BE392008A0ABD /* HomeViewController.swift in Sources */,
