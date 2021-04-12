@@ -21,6 +21,7 @@ protocol HomeViewModelDelegate: AnyObject {
 
   func onExit()
   func getNextLives()
+  func saveLive(_ live: NextLive)
 }
 
 class HomeViewModel {
@@ -54,17 +55,13 @@ extension HomeViewModel: HomeViewModelDelegate {
       guard let self = self else { return }
       self.loading.value = false
 
-      let lives = [
+      let lives: [NextLive] = [1, 2, 3, 4, 5].map {
         NextLive.fromMock(
-          id: "1",
-          startTime: "2021-04-012T18:20:00",
-          endTime: "2021-04-012T19:00:00"
-        ),
-        NextLive.fromMock(id: "2"),
-        NextLive.fromMock(id: "3"),
-        NextLive.fromMock(id: "4"),
-        NextLive.fromMock(id: "5")
-      ]
+          id: "\($0)",
+          startTime: "2021-04-\(9 + $0)T18:00:00",
+          endTime: "2021-04-\(9 + $0)T19:00:00"
+        )
+      }
 
       for live in lives {
         guard let id = live.liveId else { continue }
@@ -78,5 +75,9 @@ extension HomeViewModel: HomeViewModelDelegate {
       //      self.nextLives.value = []
       //      self.error.value = true
     }
+  }
+
+  func saveLive(_ live: NextLive) {
+    alreadyScheduledLives.add(live)
   }
 }

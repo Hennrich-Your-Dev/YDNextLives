@@ -49,14 +49,19 @@ extension HomeViewController: UITableViewDataSource {
       guard let self = self else { return }
 
       self.schedule(event: currentLive) { success in
-        self.eventKitCallback = nil
+        DispatchQueue.main.async { [weak self] in
+          guard let self = self else { return }
+          self.eventKitCallback = nil
 
-        if success {
-          Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            YDPopOverMessage.show("adicionado ao calendário!", icon: nil)
+          if success {
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+              YDPopOverMessage.show("adicionado ao calendário!", icon: nil)
+            }
+
+            currentLive.alreadyScheduled = true
+            self.viewModel?.saveLive(currentLive)
+            tableView.reloadRows(at: [indexPath], with: .fade)
           }
-          currentLive.alreadyScheduled = true
-          tableView.reloadRows(at: [indexPath], with: .fade)
         }
       }
     }

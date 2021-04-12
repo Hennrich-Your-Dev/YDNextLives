@@ -22,14 +22,14 @@ class AlreadyScheduledLivesManager {
           let saved = try? JSONDecoder().decode([ScheduledLive].self, from: data)
     else { return }
 
-    lives = pruneOldLives(from: saved)
+    pruneOldLives(from: saved)
   }
 }
 
 // MARK: Actions
 extension AlreadyScheduledLivesManager {
-  private func pruneOldLives(from saved: [ScheduledLive]) -> [ScheduledLive] {
-    var cleanLives: [ScheduledLive] = []
+  private func pruneOldLives(from saved: [ScheduledLive]) {
+    var cleanLives: [ScheduledLive] = saved
     var needToSave = false
 
     for (index, curr) in cleanLives.enumerated() {
@@ -45,11 +45,11 @@ extension AlreadyScheduledLivesManager {
       }
     }
 
+    lives = cleanLives
+
     if needToSave {
       save()
     }
-
-    return cleanLives
   }
 
   private func save() {
@@ -59,7 +59,7 @@ extension AlreadyScheduledLivesManager {
 
   func add(_ live: NextLive) {
     guard let id = live.liveId,
-      lives.firstIndex(where: { $0.id == id }) != nil,
+      lives.firstIndex(where: { $0.id == id }) == nil,
       let endTime = live.finalDateAsDate
     else { return }
 
