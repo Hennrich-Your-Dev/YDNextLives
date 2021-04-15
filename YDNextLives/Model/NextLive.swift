@@ -75,12 +75,12 @@ class NextLive: Codable {
 
   // MARK: Init
   init(
-    liveId: String?,
-    photo: String?,
-    initialDate: String?,
-    finalDate: String?,
-    name: String?,
-    description: String?
+    liveId: String? = nil,
+    photo: String? = nil,
+    initialDate: String? = nil,
+    finalDate: String? = nil,
+    name: String? = nil,
+    description: String? = nil
   ) {
     self.liveId = liveId
     self.photo = photo
@@ -96,7 +96,7 @@ extension NextLive {
   static func fromMock(id: String, startTime: String? = nil, endTime: String? = nil) -> NextLive {
     return NextLive(
       liveId: id,
-      photo: "https://miro.medium.com/max/875/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
+//      photo: "https://miro.medium.com/max/875/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
       initialDate: startTime ?? "2021-04-01T21:00:00",
       finalDate: endTime ?? "2021-04-01T22:00:00",
       name: "Nome da Live",

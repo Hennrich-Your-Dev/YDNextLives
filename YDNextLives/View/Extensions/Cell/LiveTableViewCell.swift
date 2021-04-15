@@ -71,7 +71,13 @@ class LiveTableViewCell: UITableViewCell {
   }
 
   func config(withLive live: NextLive) {
-    photoImageView.setImage(live.photo, placeholder: Icons.imagePlaceHolder)
+    photoImageView.setImage(
+      live.photo,
+      placeholder: Icons.imagePlaceHolder?
+        .withAlignmentRectInsets(
+          UIEdgeInsets(top: -16, left: -16, bottom: -16, right: -16)
+        )
+    )
     dateLabel.text = live.formatedDate
     nameLabel.text = live.name
     descriptionLabel.text = live.description
@@ -153,7 +159,7 @@ extension LiveTableViewCell {
       .withAlignmentRectInsets(
         UIEdgeInsets(top: -16, left: -16, bottom: -16, right: -16)
       )
-    photoImageView.tintColor = UIColor.Zeplin.grayLight
+    photoImageView.tintColor = UIColor.Zeplin.grayNight
     containerView.addSubview(photoImageView)
 
     photoImageView.translatesAutoresizingMaskIntoConstraints = false

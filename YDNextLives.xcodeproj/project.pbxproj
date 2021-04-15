@@ -109,8 +109,8 @@
 		C18130142610245100F0AEE7 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				C18130152610248D00F0AEE7 /* LiveTableViewCell.swift */,
 				C1E0628526116BCA00738E6F /* LiveShimmerTableViewCell.swift */,
+				C18130152610248D00F0AEE7 /* LiveTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
