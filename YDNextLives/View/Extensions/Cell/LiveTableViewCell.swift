@@ -49,19 +49,24 @@ class LiveTableViewCell: UITableViewCell {
   }
 
   // MARK: Actions
-  func setStyle(isAvailable: Bool) {
+  func setStyle(isAvailable: Bool, isLive: Bool) {
     dateLabel.textColor = isAvailable ? UIColor.Zeplin.grayLight: UIColor.Zeplin.redNight
     scheduleButton.tintColor = isAvailable ? UIColor.Zeplin.redBranding : UIColor.Zeplin.grayLight
+    dateLabel.textColor = isLive ?
+      UIColor.Zeplin.redNight :
+      UIColor.Zeplin.grayLight
 
     scheduleButton.setAttributedTitle(
       NSAttributedString(
-        string: "adicionar",
+        string: isAvailable ? "adicionar" :
+          isLive ? "adicionar" : "adicionado",
         attributes: [
           NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
           NSAttributedString.Key.foregroundColor: isAvailable ? UIColor.Zeplin.redBranding : UIColor.Zeplin.grayNight
         ]
       ),
-      for: .normal)
+      for: .normal
+    )
     scheduleButton.isEnabled = isAvailable
   }
 
@@ -70,10 +75,7 @@ class LiveTableViewCell: UITableViewCell {
     dateLabel.text = live.formatedDate
     nameLabel.text = live.name
     descriptionLabel.text = live.description
-    setStyle(isAvailable: live.isAvailable)
-    dateLabel.textColor = live.isLive ?
-      UIColor.Zeplin.redNight :
-      UIColor.Zeplin.grayLight
+    setStyle(isAvailable: live.isAvailable, isLive: live.isLive)
   }
 
   func shimmerCell() {

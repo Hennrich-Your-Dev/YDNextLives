@@ -28,7 +28,7 @@ class HomeViewController: UIViewController {
     setUpLayouts()
     setUpBinds()
     viewModel?.getNextLives()
-    tableView.contentOffset = CGPoint(x: 0, y: -50)
+    tableView.contentOffset = CGPoint(x: 0, y: -cellHeightSize)
   }
 }
 

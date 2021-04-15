@@ -26,6 +26,7 @@ extension HomeViewController {
       guard let self = self else { return }
 
       if list.isEmpty {
+        self.shimmer = true
         self.showEmptyState()
       } else {
         self.shimmer = false
@@ -35,6 +36,7 @@ extension HomeViewController {
 
     viewModel?.error.bind { [weak self] _ in
       guard let self = self else { return }
+      self.shimmer = true
       self.showErrorState()
     }
   }

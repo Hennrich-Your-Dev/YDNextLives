@@ -58,8 +58,8 @@ extension HomeViewModel: HomeViewModelDelegate {
       let lives: [NextLive] = [1, 2, 3, 4, 5].map {
         NextLive.fromMock(
           id: "\($0)",
-          startTime: "2021-04-\(9 + $0)T18:00:00",
-          endTime: "2021-04-\(9 + $0)T19:00:00"
+          startTime: "2021-04-\(14 + $0)T18:00:00",
+          endTime: "2021-04-\(14 + $0)T19:00:00"
         )
       }
 
@@ -72,8 +72,8 @@ extension HomeViewModel: HomeViewModelDelegate {
       }
 
       self.nextLives.value = lives
-      //      self.nextLives.value = []
-      //      self.error.value = true
+//        self.nextLives.value = []
+//        self.error.value = true
     }
   }
 

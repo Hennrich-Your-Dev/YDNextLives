@@ -38,6 +38,7 @@ extension HomeViewController {
 
   // TableView
   func createTableView() {
+    view.addSubview(tableView)
     tableView.frame = view.frame
     tableView.separatorStyle = .none
     tableView.tableHeaderView = UIView(
@@ -72,7 +73,6 @@ extension HomeViewController {
       forCellReuseIdentifier: LiveShimmerTableViewCell.identifier
     )
 
-    view.addSubview(tableView)
     tableView.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -123,7 +123,8 @@ extension HomeViewController {
     let titleLabel = UILabel()
     titleLabel.font = .systemFont(ofSize: 16, weight: .bold)
     titleLabel.textColor = UIColor.Zeplin.black
-    titleLabel.text = "poooxa, não temos nada planejado!"
+    titleLabel.text = "poooxa, por enquanto não tem live planejada :/"
+    titleLabel.numberOfLines = 0
     titleLabel.textAlignment = .center
     emptyStateView.addSubview(titleLabel)
 
@@ -146,7 +147,7 @@ extension HomeViewController {
     messageLabel.textColor = UIColor.Zeplin.grayLight
     messageLabel.numberOfLines = 0
     messageLabel.textAlignment = .center
-    messageLabel.text = .loremIpsum(ofLength: 64)
+    messageLabel.text = "mas fica de olho no calendário que já já tem um novo #AmericanasAoVivo esperando por você!"
     emptyStateView.addSubview(messageLabel)
 
     messageLabel.translatesAutoresizingMaskIntoConstraints = false
