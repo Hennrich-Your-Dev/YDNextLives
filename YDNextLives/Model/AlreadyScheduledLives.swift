@@ -30,17 +30,28 @@ class AlreadyScheduledLivesManager {
 extension AlreadyScheduledLivesManager {
   private func pruneOldLives(from saved: [ScheduledLive]) {
     var cleanLives: [ScheduledLive] = saved
+    var indexesToRemove: [Int] = []
     var needToSave = false
 
     for (index, curr) in cleanLives.enumerated() {
       guard let endTimePlusOne = Calendar.current.date(byAdding: .day, value: 1, to: curr.endTime)
       else { continue }
 
-      if endTimePlusOne.isInPast {
-        _ = cleanLives.remove(at: index)
+      if endTimePlusOne.isInPast,
+         cleanLives.at(index) != nil {
+        indexesToRemove.append(index)
 
         if !needToSave {
           needToSave = true
+        }
+      }
+    }
+
+    if !indexesToRemove.isEmpty {
+      indexesToRemove.reverse()
+      indexesToRemove.forEach {
+        if cleanLives.at($0) != nil {
+          cleanLives.remove(at: $0)
         }
       }
     }
