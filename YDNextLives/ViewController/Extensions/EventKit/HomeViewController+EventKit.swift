@@ -10,9 +10,13 @@ import EventKit
 
 import YDB2WComponents
 import YDB2WAssets
+import YDB2WModels
 
 extension HomeViewController {
-  func schedule(event: NextLive, onCompletion completion: @escaping (Bool) -> Void) {
+  func schedule(
+    event: YDSpaceyComponentNextLive,
+    onCompletion completion: @escaping (Bool) -> Void
+  ) {
     eventKitCallback = completion
     let eventStore = EKEventStore()
 
@@ -21,7 +25,7 @@ extension HomeViewController {
         DispatchQueue.main.async { [weak self] in
           guard let self = self else { return }
 
-          eventStore.requestAccess(to: .event) { granted, error in
+          eventStore.requestAccess(to: .event) { granted, _ in
             if granted {
               self.callEventController(withLive: event, eventStore)
             } else {
@@ -64,9 +68,12 @@ extension HomeViewController {
     }
   }
 
-  func callEventController(withLive live: NextLive, _ eventStore: EKEventStore) {
-    guard let startTime = live.initialDate?.date(withFormat: "yyyy-MM-dd'T'HH:mm:ss"),
-          let endTime = live.finalDate?.date(withFormat: "yyyy-MM-dd'T'HH:mm:ss")
+  func callEventController(
+    withLive live: YDSpaceyComponentNextLive,
+    _ eventStore: EKEventStore
+  ) {
+    guard let startTime = live.initialDateAsDate,
+          let endTime = live.finalDateAsDate
     else { return }
 
     let calendar = eventStore.defaultCalendarForNewEvents

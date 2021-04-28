@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C1388B34261226F10070B128 /* NextLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1388B33261226F10070B128 /* NextLive.swift */; };
 		C1388B39261235130070B128 /* HomeViewController+Binds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1388B38261235130070B128 /* HomeViewController+Binds.swift */; };
 		C16159C82610EA3A00CDF36C /* HomeViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16159C72610EA3A00CDF36C /* HomeViewController+TableView.swift */; };
 		C16E758626248DE500CFE698 /* AlreadyScheduledLives.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16E758526248DE500CFE698 /* AlreadyScheduledLives.swift */; };
@@ -26,7 +25,6 @@
 		AB0BD5CBE9F6AD9873CCED86 /* Pods-YDNextLives.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YDNextLives.debug.xcconfig"; path = "Target Support Files/Pods-YDNextLives/Pods-YDNextLives.debug.xcconfig"; sourceTree = "<group>"; };
 		B221278DE017FA02D7E29B17 /* Pods_YDNextLives.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YDNextLives.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B719B1FA460873954BBFFCF0 /* Pods-YDNextLives.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YDNextLives.release.xcconfig"; path = "Target Support Files/Pods-YDNextLives/Pods-YDNextLives.release.xcconfig"; sourceTree = "<group>"; };
-		C1388B33261226F10070B128 /* NextLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLive.swift; sourceTree = "<group>"; };
 		C1388B38261235130070B128 /* HomeViewController+Binds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Binds.swift"; sourceTree = "<group>"; };
 		C16159C72610EA3A00CDF36C /* HomeViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+TableView.swift"; sourceTree = "<group>"; };
 		C16E758526248DE500CFE698 /* AlreadyScheduledLives.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlreadyScheduledLives.swift; sourceTree = "<group>"; };
@@ -66,7 +64,6 @@
 		C1388B322612269E0070B128 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C1388B33261226F10070B128 /* NextLive.swift */,
 				C16E758526248DE500CFE698 /* AlreadyScheduledLives.swift */,
 			);
 			path = Model;
@@ -322,7 +319,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1A5CC1C261508B600C5FE27 /* HomeViewController+EventKit.swift in Sources */,
-				C1388B34261226F10070B128 /* NextLive.swift in Sources */,
 				C1388B39261235130070B128 /* HomeViewController+Binds.swift in Sources */,
 				C16159C82610EA3A00CDF36C /* HomeViewController+TableView.swift in Sources */,
 				C1E0628626116BCA00738E6F /* LiveShimmerTableViewCell.swift in Sources */,

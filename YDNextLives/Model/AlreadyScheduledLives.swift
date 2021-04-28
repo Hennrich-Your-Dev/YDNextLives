@@ -8,6 +8,7 @@
 import Foundation
 
 import YDExtensions
+import YDB2WModels
 
 class AlreadyScheduledLivesManager {
   // MARK: Properties
@@ -68,7 +69,7 @@ extension AlreadyScheduledLivesManager {
     defaults.set(encoded, forKey: savedLivesPropertyName)
   }
 
-  func add(_ live: NextLive) {
+  func add(_ live: YDSpaceyComponentNextLive) {
     guard let id = live.liveId,
       lives.firstIndex(where: { $0.id == id }) == nil,
       let endTime = live.finalDateAsDate

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -40,9 +39,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5q-38-jKD">
-                                        <rect key="frame" x="243" y="278" width="99" height="40"/>
+                                        <rect key="frame" x="268" y="278" width="74" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="99" id="XDg-rB-MCG"/>
                                             <constraint firstAttribute="height" constant="40" id="jAU-7A-1tu"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
@@ -54,7 +52,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vnD-Ve-0NB">
-                                        <rect key="frame" x="128" y="278" width="99" height="40"/>
+                                        <rect key="frame" x="153" y="278" width="99" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="99" id="EIz-yP-Qh6"/>
                                             <constraint firstAttribute="height" constant="40" id="NY1-in-oen"/>

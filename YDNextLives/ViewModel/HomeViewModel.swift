@@ -9,6 +9,7 @@ import Foundation
 
 import YDExtensions
 import YDUtilities
+import YDB2WModels
 
 protocol HomeNavigation {
   func onExit()
@@ -17,11 +18,11 @@ protocol HomeNavigation {
 protocol HomeViewModelDelegate: AnyObject {
   var loading: Binder<Bool> { get }
   var error: Binder<Bool> { get }
-  var nextLives: Binder<[NextLive]> { get }
+  var nextLives: Binder<[YDSpaceyComponentNextLive]> { get }
 
   func onExit()
   func getNextLives()
-  func saveLive(_ live: NextLive)
+  func saveLive(_ live: YDSpaceyComponentNextLive)
 }
 
 class HomeViewModel {
@@ -33,7 +34,7 @@ class HomeViewModel {
 
   var loading: Binder<Bool> = Binder(false)
   var error: Binder<Bool> = Binder(false)
-  var nextLives: Binder<[NextLive]> = Binder([])
+  var nextLives: Binder<[YDSpaceyComponentNextLive]> = Binder([])
   let alreadyScheduledLives: AlreadyScheduledLivesManager
 
   // MARK: Init
@@ -55,11 +56,11 @@ extension HomeViewModel: HomeViewModelDelegate {
       guard let self = self else { return }
       self.loading.value = false
 
-      let lives: [NextLive] = [1, 2, 3, 4, 5].map {
-        NextLive.fromMock(
+      let lives: [YDSpaceyComponentNextLive] = [1, 2, 3, 4, 5].map {
+        YDSpaceyComponentNextLive.fromMock(
           id: "\($0)",
-          startTime: "2021-04-\(14 + $0)T18:00:00",
-          endTime: "2021-04-\(14 + $0)T19:00:00"
+          startTime: "\(25 + $0)/04/2021 18:00",
+          endTime: "\(25 + $0)/04/2021 19:00"
         )
       }
 
@@ -77,7 +78,7 @@ extension HomeViewModel: HomeViewModelDelegate {
     }
   }
 
-  func saveLive(_ live: NextLive) {
+  func saveLive(_ live: YDSpaceyComponentNextLive) {
     alreadyScheduledLives.add(live)
   }
 }

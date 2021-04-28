@@ -9,6 +9,7 @@ import UIKit
 
 import YDExtensions
 import YDB2WAssets
+import YDB2WModels
 
 class LiveTableViewCell: UITableViewCell {
   // MARK: Properties
@@ -70,7 +71,7 @@ class LiveTableViewCell: UITableViewCell {
     scheduleButton.isEnabled = isAvailable
   }
 
-  func config(withLive live: NextLive) {
+  func config(withLive live: YDSpaceyComponentNextLive) {
     photoImageView.setImage(
       live.photo,
       placeholder: Icons.imagePlaceHolder?
