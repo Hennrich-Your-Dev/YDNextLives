@@ -10,6 +10,7 @@ import Foundation
 import YDExtensions
 import YDUtilities
 import YDB2WModels
+import YDB2WServices
 
 protocol HomeNavigation {
   func onExit()
@@ -28,6 +29,8 @@ protocol HomeViewModelDelegate: AnyObject {
 class HomeViewModel {
   // MARK: Properties
   let navigation: HomeNavigation
+  let service: YDB2WServiceDelegate
+  lazy var logger = Logger.forClass(Self.self)
 
   private let savedLivesName = "alreadyScheduledLives"
   private let defaults = UserDefaults.standard
@@ -38,8 +41,9 @@ class HomeViewModel {
   let alreadyScheduledLives: AlreadyScheduledLivesManager
 
   // MARK: Init
-  init(navigation: HomeNavigation) {
+  init(navigation: HomeNavigation, service: YDB2WServiceDelegate = YDB2WService()) {
     self.navigation = navigation
+    self.service = service
     alreadyScheduledLives = AlreadyScheduledLivesManager()
   }
 }
@@ -52,30 +56,46 @@ extension HomeViewModel: HomeViewModelDelegate {
   func getNextLives() {
     loading.value = true
 
-    Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { [weak self] _ in
+    service.getNextLives(
+      spaceyId: "aovivo"
+    ) { [weak self] (response: Result<[YDSpaceyComponentNextLive], YDServiceError>) in
       guard let self = self else { return }
       self.loading.value = false
 
-      let lives: [YDSpaceyComponentNextLive] = [1, 2, 3, 4, 5].map {
-        YDSpaceyComponentNextLive.fromMock(
-          id: "\($0)",
-          startTime: "\(25 + $0)/04/2021 18:00",
-          endTime: "\(25 + $0)/04/2021 19:00"
-        )
+      switch response {
+        case .success(let lives):
+          self.nextLives.value = lives
+
+        case .failure(let error):
+          self.logger.error(error.message)
+          self.error.value = true
       }
-
-      for live in lives {
-        guard let id = live.liveId else { continue }
-
-        if self.alreadyScheduledLives.checkIfExists(id) {
-          live.alreadyScheduled = true
-        }
-      }
-
-      self.nextLives.value = lives
-//        self.nextLives.value = []
-//        self.error.value = true
     }
+
+//    Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { [weak self] _ in
+//      guard let self = self else { return }
+//      self.loading.value = false
+//
+//      let lives: [YDSpaceyComponentNextLive] = [1, 2, 3, 4, 5].map {
+//        YDSpaceyComponentNextLive.fromMock(
+//          id: "\($0)",
+//          startTime: "\(25 + $0)/04/2021 18:00",
+//          endTime: "\(25 + $0)/04/2021 19:00"
+//        )
+//      }
+//
+//      for live in lives {
+//        guard let id = live.liveId else { continue }
+//
+//        if self.alreadyScheduledLives.checkIfExists(id) {
+//          live.alreadyScheduled = true
+//        }
+//      }
+//
+//      self.nextLives.value = lives
+////        self.nextLives.value = []
+////        self.error.value = true
+//    }
   }
 
   func saveLive(_ live: YDSpaceyComponentNextLive) {
