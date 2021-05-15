@@ -161,6 +161,7 @@ extension LiveTableViewCell {
         UIEdgeInsets(top: -16, left: -16, bottom: -16, right: -16)
       )
     photoImageView.tintColor = UIColor.Zeplin.grayNight
+    photoImageView.contentMode = .scaleAspectFill
     containerView.addSubview(photoImageView)
 
     photoImageView.translatesAutoresizingMaskIntoConstraints = false
