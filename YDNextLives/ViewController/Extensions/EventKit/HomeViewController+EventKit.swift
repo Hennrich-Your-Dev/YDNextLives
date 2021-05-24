@@ -73,7 +73,8 @@ extension HomeViewController {
     _ eventStore: EKEventStore
   ) {
     guard let startTime = live.initialDateAsDate,
-          let endTime = live.finalDateAsDate
+          let endTime = live.finalDateAsDate,
+          let reminderTimeInMinutes = viewModel?.reminderTimeInMinutes
     else { return }
 
     let calendar = eventStore.defaultCalendarForNewEvents
@@ -82,7 +83,9 @@ extension HomeViewController {
     event.startDate = startTime
     event.endDate = endTime
     event.calendar = calendar
-    event.addAlarm(EKAlarm(relativeOffset: -15 * 60))
+
+    let timeToFire = -reminderTimeInMinutes * 60
+    event.addAlarm(EKAlarm(relativeOffset: timeToFire))
 
     try? eventStore.save(event, span: .thisEvent, commit: true)
     eventKitCallback?(true)

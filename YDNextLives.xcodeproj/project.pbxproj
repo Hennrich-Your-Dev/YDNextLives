@@ -80,8 +80,8 @@
 		C16159C52610E9BB00CDF36C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				C1A5CC1A261508A400C5FE27 /* EventKit */,
 				C1388B37261234CC0070B128 /* Binds */,
+				C1A5CC1A261508A400C5FE27 /* EventKit */,
 				C16159C62610E9C100CDF36C /* TableView */,
 			);
 			path = Extensions;

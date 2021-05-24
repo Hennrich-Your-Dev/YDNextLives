@@ -57,6 +57,9 @@ public enum YDConfigProperty: String {
   case liveYouTubeCounter = "liveAmountPeopleWatching"
   case liveAmountPeopleWatchingPolling
 
+  // Next Lives
+  case nextLivesReminderTimeInMinutes = "nextLivesReminderTime"
+
   // Google Services
   case youtubeKey
 

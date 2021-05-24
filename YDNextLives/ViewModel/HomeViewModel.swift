@@ -20,6 +20,7 @@ protocol HomeViewModelDelegate: AnyObject {
   var loading: Binder<Bool> { get }
   var error: Binder<Bool> { get }
   var nextLives: Binder<[YDSpaceyComponentNextLive]> { get }
+  var reminderTimeInMinutes: Double { get }
 
   func onExit()
   func getNextLives()
@@ -39,6 +40,7 @@ class HomeViewModel {
   var error: Binder<Bool> = Binder(false)
   var nextLives: Binder<[YDSpaceyComponentNextLive]> = Binder([])
   let alreadyScheduledLives: AlreadyScheduledLivesManager
+  var reminderTimeInMinutes: Double = 15
 
   // MARK: Init
   init(navigation: HomeNavigation, service: YDB2WServiceDelegate = YDB2WService()) {
@@ -64,38 +66,25 @@ extension HomeViewModel: HomeViewModelDelegate {
 
       switch response {
         case .success(let lives):
-          self.nextLives.value = lives
+          let filteredLives = lives.filter { curr in
+            guard let initialDate = curr.initialDateAsDate else { return false }
+            return !initialDate.isInPast
+          }
+
+          let sorted = filteredLives.sorted { (lhs, rhs) -> Bool in
+            guard let dateLhs = lhs.initialDateAsDate else { return false }
+            guard let dateRhs = rhs.initialDateAsDate else { return true }
+
+            return dateLhs.compare(dateRhs) == .orderedAscending
+          }
+
+          self.nextLives.value = sorted
 
         case .failure(let error):
           self.logger.error(error.message)
           self.error.value = true
       }
     }
-
-//    Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { [weak self] _ in
-//      guard let self = self else { return }
-//      self.loading.value = false
-//
-//      let lives: [YDSpaceyComponentNextLive] = [1, 2, 3, 4, 5].map {
-//        YDSpaceyComponentNextLive.fromMock(
-//          id: "\($0)",
-//          startTime: "\(25 + $0)/04/2021 18:00",
-//          endTime: "\(25 + $0)/04/2021 19:00"
-//        )
-//      }
-//
-//      for live in lives {
-//        guard let id = live.liveId else { continue }
-//
-//        if self.alreadyScheduledLives.checkIfExists(id) {
-//          live.alreadyScheduled = true
-//        }
-//      }
-//
-//      self.nextLives.value = lives
-////        self.nextLives.value = []
-////        self.error.value = true
-//    }
   }
 
   func saveLive(_ live: YDSpaceyComponentNextLive) {

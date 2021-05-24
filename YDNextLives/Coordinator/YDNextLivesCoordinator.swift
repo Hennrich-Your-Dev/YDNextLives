@@ -64,6 +64,13 @@ public class YDNextLivesCoordinator {
     let vc = HomeViewController()
 
     let viewModel = HomeViewModel(navigation: self)
+
+    if let reminderTimeInMinutes = YDIntegrationHelper.shared
+        .getFeature(featureName: YDConfigKeys.live.rawValue)?
+        .extras?[YDConfigProperty.nextLivesReminderTimeInMinutes.rawValue] as? Double {
+      viewModel.reminderTimeInMinutes = reminderTimeInMinutes
+    }
+
     vc.viewModel = viewModel
 
     navigationController.viewControllers = [vc]
