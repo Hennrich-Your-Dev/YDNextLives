@@ -9,7 +9,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "YDNextLives"
-  spec.version      = "1.0.24"
+  spec.version      = "1.4.0"
   spec.summary      = "A short description of YDNextLives."
   spec.homepage     = "https://yourdev.com.br"
   spec.license      = "MIT"
@@ -38,11 +38,11 @@ Pod::Spec.new do |spec|
   #  where they will only apply to your library. If you depend on other Podspecs
   #  you can include multiple dependencies to ensure it works.
 
-  spec.dependency "YDExtensions", "~> 1.0.42"
-  spec.dependency "YDB2WAssets", "~> 1.0.33"
-  spec.dependency "YDUtilities", "~> 1.1.0"
-  spec.dependency "YDB2WServices", "~> 1.1.0"
-  spec.dependency "YDB2WIntegration", "~> 1.1.0"
-  spec.dependency "YDB2WComponents", "~> 1.1.0"
-  spec.dependency "YDB2WModels", "~> 1.1.0"
+  spec.dependency "YDExtensions", "~> 1.4.0"
+  spec.dependency "YDB2WAssets", "~> 1.4.0"
+  spec.dependency "YDUtilities", "~> 1.4.0"
+  spec.dependency "YDB2WServices", "~> 1.4.0"
+  spec.dependency "YDB2WIntegration", "~> 1.4.0"
+  spec.dependency "YDB2WComponents", "~> 1.4.0"
+  spec.dependency "YDB2WModels", "~> 1.4.0"
 end
