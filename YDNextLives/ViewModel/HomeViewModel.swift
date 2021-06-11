@@ -11,6 +11,7 @@ import YDExtensions
 import YDUtilities
 import YDB2WModels
 import YDB2WServices
+import YDB2WIntegration
 
 protocol HomeNavigation {
   func onExit()
@@ -53,6 +54,23 @@ class HomeViewModel {
     self.service = service
     self.spaceyId = spaceyId
     alreadyScheduledLives = AlreadyScheduledLivesManager()
+
+    trackEvent(type: .state)
+  }
+
+  func trackEvent(type: TrackType, liveName: String? = nil) {
+    if type == .state {
+      YDIntegrationHelper.shared.trackEvent(withName: .nextLivesPageView, ofType: .state)
+    } else {
+      if let liveName = liveName {
+        let parameters = TrackEvents.nextLivesAddToCalendar.parameters(body: ["liveName": liveName])
+        YDIntegrationHelper.shared.trackEvent(
+          withName: .nextLivesAddToCalendar,
+          ofType: .action,
+          withParameters: parameters
+        )
+      }
+    }
   }
 }
 
@@ -94,6 +112,7 @@ extension HomeViewModel: HomeViewModelDelegate {
   }
 
   func saveLive(_ live: YDSpaceyComponentNextLive) {
+    trackEvent(type: .action, liveName: live.name)
     alreadyScheduledLives.add(live)
   }
 }
