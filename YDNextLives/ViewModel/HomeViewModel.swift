@@ -31,6 +31,7 @@ class HomeViewModel {
   // MARK: Properties
   let navigation: HomeNavigation
   let service: YDB2WServiceDelegate
+  let spaceyId: String
   lazy var logger = Logger.forClass(Self.self)
 
   private let savedLivesName = "alreadyScheduledLives"
@@ -43,9 +44,14 @@ class HomeViewModel {
   var reminderTimeInMinutes: Double = 15
 
   // MARK: Init
-  init(navigation: HomeNavigation, service: YDB2WServiceDelegate = YDB2WService()) {
+  init(
+    navigation: HomeNavigation,
+    service: YDB2WServiceDelegate = YDB2WService(),
+    spaceyId: String
+  ) {
     self.navigation = navigation
     self.service = service
+    self.spaceyId = spaceyId
     alreadyScheduledLives = AlreadyScheduledLivesManager()
   }
 }
@@ -59,7 +65,7 @@ extension HomeViewModel: HomeViewModelDelegate {
     loading.value = true
 
     service.getNextLives(
-      spaceyId: "aovivo"
+      spaceyId: spaceyId
     ) { [weak self] (response: Result<[YDSpaceyComponentNextLive], YDServiceError>) in
       guard let self = self else { return }
       self.loading.value = false
@@ -71,7 +77,7 @@ extension HomeViewModel: HomeViewModelDelegate {
             return !initialDate.isInPast
           }
 
-          let sorted = filteredLives.sorted { (lhs, rhs) -> Bool in
+          let sorted = filteredLives.sorted { lhs, rhs -> Bool in
             guard let dateLhs = lhs.initialDateAsDate else { return false }
             guard let dateRhs = rhs.initialDateAsDate else { return true }
 

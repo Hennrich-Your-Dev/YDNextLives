@@ -58,12 +58,19 @@ public class YDNextLivesCoordinator {
 
   // MARK: Start
   public func start() {
+    guard let liveConfig = YDIntegrationHelper.shared
+            .getFeature(featureName: YDConfigKeys.live.rawValue)?.extras,
+          let spaceyId = liveConfig[YDConfigProperty.nextLiveSpaceyId.rawValue] as? String
+    else {
+      fatalError("There's no SpaceyId")
+    }
+
     let topViewController = UIApplication.shared.keyWindow?
       .rootViewController?.topMostViewController()
 
     let vc = HomeViewController()
 
-    let viewModel = HomeViewModel(navigation: self)
+    let viewModel = HomeViewModel(navigation: self, spaceyId: spaceyId)
 
     if let reminderTimeInMinutes = YDIntegrationHelper.shared
         .getFeature(featureName: YDConfigKeys.live.rawValue)?
