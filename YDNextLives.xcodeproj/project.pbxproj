@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C1388B39261235130070B128 /* HomeViewController+Binds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1388B38261235130070B128 /* HomeViewController+Binds.swift */; };
 		C16159C82610EA3A00CDF36C /* HomeViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16159C72610EA3A00CDF36C /* HomeViewController+TableView.swift */; };
-		C16E758626248DE500CFE698 /* AlreadyScheduledLives.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16E758526248DE500CFE698 /* AlreadyScheduledLives.swift */; };
 		C18130162610248D00F0AEE7 /* LiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18130152610248D00F0AEE7 /* LiveTableViewCell.swift */; };
 		C18E49AA260BD4D6008A0ABD /* YDNextLives.h in Headers */ = {isa = PBXBuildFile; fileRef = C18E49A8260BD4D6008A0ABD /* YDNextLives.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C18E49C3260BDC77008A0ABD /* YDNextLivesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18E49C2260BDC77008A0ABD /* YDNextLivesCoordinator.swift */; };
@@ -27,7 +26,6 @@
 		B719B1FA460873954BBFFCF0 /* Pods-YDNextLives.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YDNextLives.release.xcconfig"; path = "Target Support Files/Pods-YDNextLives/Pods-YDNextLives.release.xcconfig"; sourceTree = "<group>"; };
 		C1388B38261235130070B128 /* HomeViewController+Binds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Binds.swift"; sourceTree = "<group>"; };
 		C16159C72610EA3A00CDF36C /* HomeViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+TableView.swift"; sourceTree = "<group>"; };
-		C16E758526248DE500CFE698 /* AlreadyScheduledLives.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlreadyScheduledLives.swift; sourceTree = "<group>"; };
 		C18130152610248D00F0AEE7 /* LiveTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTableViewCell.swift; sourceTree = "<group>"; };
 		C18E49A5260BD4D6008A0ABD /* YDNextLives.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YDNextLives.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C18E49A8260BD4D6008A0ABD /* YDNextLives.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDNextLives.h; sourceTree = "<group>"; };
@@ -59,14 +57,6 @@
 				B719B1FA460873954BBFFCF0 /* Pods-YDNextLives.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		C1388B322612269E0070B128 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C16E758526248DE500CFE698 /* AlreadyScheduledLives.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		C1388B37261234CC0070B128 /* Binds */ = {
@@ -134,7 +124,6 @@
 			isa = PBXGroup;
 			children = (
 				C18E49C1260BDC65008A0ABD /* Coordinator */,
-				C1388B322612269E0070B128 /* Model */,
 				C18E49E6260BEB10008A0ABD /* View */,
 				C18E49E1260BE021008A0ABD /* ViewController */,
 				C18E49E7260BEB14008A0ABD /* ViewModel */,
@@ -323,7 +312,6 @@
 				C16159C82610EA3A00CDF36C /* HomeViewController+TableView.swift in Sources */,
 				C1E0628626116BCA00738E6F /* LiveShimmerTableViewCell.swift in Sources */,
 				C18E49C3260BDC77008A0ABD /* YDNextLivesCoordinator.swift in Sources */,
-				C16E758626248DE500CFE698 /* AlreadyScheduledLives.swift in Sources */,
 				C18130162610248D00F0AEE7 /* LiveTableViewCell.swift in Sources */,
 				C18E49E9260BEB2C008A0ABD /* HomeViewModel.swift in Sources */,
 				C18E49E4260BE392008A0ABD /* HomeViewController.swift in Sources */,

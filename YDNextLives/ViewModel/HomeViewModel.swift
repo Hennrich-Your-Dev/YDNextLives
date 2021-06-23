@@ -41,7 +41,7 @@ class HomeViewModel {
   var loading: Binder<Bool> = Binder(false)
   var error: Binder<Bool> = Binder(false)
   var nextLives: Binder<[YDSpaceyComponentNextLive]> = Binder([])
-  let alreadyScheduledLives: AlreadyScheduledLivesManager
+  let alreadyScheduledLives = YDManager.NextLives.shared
   var reminderTimeInMinutes: Double = 15
 
   // MARK: Init
@@ -53,7 +53,6 @@ class HomeViewModel {
     self.navigation = navigation
     self.service = service
     self.spaceyId = spaceyId
-    alreadyScheduledLives = AlreadyScheduledLivesManager()
 
     trackEvent(type: .state)
   }
@@ -112,7 +111,15 @@ extension HomeViewModel: HomeViewModelDelegate {
   }
 
   func saveLive(_ live: YDSpaceyComponentNextLive) {
+    guard let liveId = live.liveId,
+          let endTime = live.finalDateAsDate
+    else {
+      return
+    }
+
     trackEvent(type: .action, liveName: live.name)
-    alreadyScheduledLives.add(live)
+
+    let liveToSave = YDManagerScheduleLive(id: liveId, endTime: endTime)
+    alreadyScheduledLives.add(liveToSave)
   }
 }
