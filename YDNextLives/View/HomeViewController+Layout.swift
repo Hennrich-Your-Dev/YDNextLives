@@ -58,7 +58,7 @@ extension HomeViewController {
       )
     )
     tableView.backgroundColor = .clear
-    tableView.rowHeight = cellHeightSize
+    tableView.estimatedRowHeight = cellHeightSize
     tableView.dataSource = self
 
     // Cell

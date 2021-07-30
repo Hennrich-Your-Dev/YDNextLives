@@ -11,7 +11,7 @@ import YDB2WComponents
 class HomeViewController: UIViewController {
   // MARK: Properties
   var viewModel: HomeViewModelDelegate?
-  let cellHeightSize: CGFloat = 154
+  let cellHeightSize: CGFloat = 160
   var shimmer = true
   var numberOfShimmers = 0
   var eventKitCallback: ((Bool) -> Void)?
