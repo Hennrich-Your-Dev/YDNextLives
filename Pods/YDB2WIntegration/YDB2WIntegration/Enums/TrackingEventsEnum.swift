@@ -25,6 +25,10 @@ public enum TrackEvents: String {
   case addToCart = "ACOM:LiveCarousel:AddToCart"
   case productSelected = "ACOM:LiveCarousel:ProductSelected"
   case liveOpenChat = "ACOM-live-chataovivo"
+  case liveNPS = "LiveNps"
+  case sendLike = "MobileApps:LiveLikes"
+
+  // Pre Live
   case preLivePageView = "ACOM:Hotsite:aovivo"
 
   // Next Lives
@@ -37,11 +41,15 @@ public enum TrackEvents: String {
   case storeOpenBooklet = "O2O-ModoLoja-EncarteDasLojas"
   case storeOnScan = "O2O-ModoLoja-Scan"
   case storeOpenMap = "O2O-Home-Mapa"
+
+  // Store Mode NPS
+  case storeModeNPS = "ACOM:ModoLoja:NpsLoja"
   case sendNPS = "StoreModeNps"
 
   // Find a Store
   case findStoreView = "ACOM:StoreFinder:Mapa"
   case findStoreViewDenied = "ACOM:StoreFinder:SemPermissao"
+  case findStore = "ACOM:AcheUmaLoja"
 
   // Offline Account
   case offlineAccountPerfil = "ACOM:MODOLOJA-MeuPerfil"
@@ -63,7 +71,7 @@ public enum TrackEvents: String {
         return ["tipoPagina": "LASA-Scan"]
 
       // Live
-      case .pageView, .playVideo, .addToCart, .productSelected, .liveOpenChat:
+      case .pageView, .playVideo, .addToCart, .productSelected, .liveOpenChat, .liveNPS, .sendLike:
         return [:]
 
       case .preLivePageView, .nextLivesPageView, .nextLivesAddToCalendar:
@@ -73,12 +81,19 @@ public enum TrackEvents: String {
       case .storePageView, .storeOpenBasket, .storeOpenBooklet, .storeOnScan, .storeOpenMap:
         return ["tipoPagina": "O2O-modoloja"]
 
+      // Store Mode NPS
+      case .storeModeNPS:
+        return ["pageType": "O2O-modoloja"]
+
       case .sendNPS:
         return [:]
 
       // Find a Store
       case .findStoreView, .findStoreViewDenied:
         return [:]
+
+      case .findStore:
+        return  ["pageType": "O2O-modoloja"]
 
       // Offline Account
       case .offlineAccountPerfil, .offlineAccountUsersInfo,
@@ -142,6 +157,22 @@ public enum TrackEvents: String {
       case .preLivePageView:
         return [:]
 
+      case .liveNPS:
+        let liveId = body["liveId"] as? String ?? ""
+        let cardId = body["cardId"] as? String ?? ""
+        let title = body["title"] as? String ?? ""
+        let answer = body["value"] as? String ?? ""
+
+        return [
+          "liveId": liveId,
+          "liveNpsCardId": cardId,
+          "liveNpsCardTitle": title,
+          "liveNpsCardAnswer": answer
+        ]
+
+      case .sendLike:
+        return [:]
+
       // Next Lives
       case .nextLivesPageView:
         return [:]
@@ -164,9 +195,38 @@ public enum TrackEvents: String {
       case .storeOpenBasket, .storeOpenBooklet, .storeOnScan, .storeOpenMap, .sendNPS:
         return [:]
 
+      case .storeModeNPS:
+        if body.isEmpty { return [:] }
+
+        let question = body["question"] ?? ""
+        let value = body["value"] ?? ""
+        let starType = body["starType"] as? Bool ?? false
+
+        var parameters: [String: Any] = [
+          "category": "modoloja",
+          "action": question
+        ]
+
+        if starType {
+          parameters["nota"] = value
+        } else {
+          parameters["label"] = value
+        }
+
+        return parameters
+
       // Find a Store
       case .findStoreView, .findStoreViewDenied:
         return [:]
+
+      case .findStore:
+        let action = body["action"] as? String ?? ""
+
+        return [
+          "category": "ache uma loja",
+          "action": action,
+          "label": "sucesso"
+        ]
 
       // Offline Account
       case .offlineAccountPerfil, .offlineAccountUsersInfo,

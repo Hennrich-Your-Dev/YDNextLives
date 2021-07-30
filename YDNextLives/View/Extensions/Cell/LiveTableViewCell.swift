@@ -17,11 +17,15 @@ class LiveTableViewCell: UITableViewCell {
 
   // MARK: Components
   let containerView = UIView()
+  
   let photoBackgroundView = UIView()
+  let photoPlaceImage = UIImageView()
   let photoImageView = UIImageView()
+  
   let dateLabel = UILabel()
   let nameLabel = UILabel()
   let descriptionLabel = UILabel()
+  
   let scheduleButton = UIButton()
 
   // MARK: Init
@@ -39,10 +43,8 @@ class LiveTableViewCell: UITableViewCell {
 
   override func prepareForReuse() {
     super.prepareForReuse()
-    photoImageView.image = Icons.imagePlaceHolder?
-      .withAlignmentRectInsets(
-        UIEdgeInsets(top: -16, left: -16, bottom: -16, right: -16)
-      )
+    photoImageView.image = nil
+    photoPlaceImage.isHidden = false
     dateLabel.text = nil
     nameLabel.text = nil
     descriptionLabel.text = nil
@@ -73,27 +75,18 @@ class LiveTableViewCell: UITableViewCell {
 
   func config(withLive live: YDSpaceyComponentNextLive) {
     photoImageView.setImage(
-      live.photo,
-      placeholder: Icons.imagePlaceHolder?
-        .withAlignmentRectInsets(
-          UIEdgeInsets(top: -16, left: -16, bottom: -16, right: -16)
-        )
-    )
+      live.photo
+    ) { [weak self] success in
+      guard let self = self else { return }
+      guard success != nil else { return }
+      self.photoPlaceImage.isHidden = true
+    }
+    
     dateLabel.text = live.formatedDate
     nameLabel.text = live.name
     descriptionLabel.text = live.description
+    
     setStyle(isAvailable: live.isAvailable, isLive: live.isLive)
-  }
-
-  func shimmerCell() {
-    DispatchQueue.main.async { [weak self] in
-      guard let self = self else { return }
-      self.photoImageView.startShimmer()
-      self.dateLabel.startShimmer()
-      self.nameLabel.startShimmer()
-      self.descriptionLabel.startShimmer()
-      self.scheduleButton.startShimmer()
-    }
   }
 
   @objc func onButtonAction() {
@@ -114,7 +107,7 @@ extension LiveTableViewCell {
 
   // Container
   private func createContainerView() {
-    containerView.backgroundColor = UIColor.Zeplin.white
+    containerView.backgroundColor = Zeplin.white
     containerView.layer.applyShadow(alpha: 0.08, y: 6, blur: 20, spread: -1)
     containerView.layer.cornerRadius = 6
     containerView.layer.masksToBounds = false
@@ -125,12 +118,14 @@ extension LiveTableViewCell {
       containerView.topAnchor.constraint(equalTo: contentView.topAnchor),
       containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
       containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-      containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+      containerView.trailingAnchor
+        .constraint(equalTo: contentView.trailingAnchor, constant: -16)
     ])
   }
 
   // Photo
   private func createPhotoImageView() {
+    // Container
     photoBackgroundView.layer.cornerRadius = 4
     photoBackgroundView.layer.masksToBounds = true
     photoBackgroundView.backgroundColor = UIColor.Zeplin.graySurface
@@ -138,11 +133,11 @@ extension LiveTableViewCell {
 
     photoBackgroundView.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
-      photoBackgroundView.widthAnchor.constraint(equalToConstant: 116),
-      photoBackgroundView.heightAnchor.constraint(equalToConstant: 116),
+      photoBackgroundView.widthAnchor.constraint(equalToConstant: 126),
+      photoBackgroundView.heightAnchor.constraint(equalToConstant: 126),
       photoBackgroundView.topAnchor.constraint(
         equalTo: containerView.topAnchor,
-        constant: 10
+        constant: 14
       ),
       photoBackgroundView.leadingAnchor.constraint(
         equalTo: containerView.leadingAnchor,
@@ -150,36 +145,36 @@ extension LiveTableViewCell {
       ),
       photoBackgroundView.bottomAnchor.constraint(
         equalTo: containerView.bottomAnchor,
-        constant: -16
+        constant: -20
       )
     ])
 
+    // Placeholder
+    photoBackgroundView.addSubview(photoPlaceImage)
+    photoPlaceImage.image = Icons.imagePlaceHolder
+    photoPlaceImage.tintColor = Zeplin.grayNight
+    photoPlaceImage.translatesAutoresizingMaskIntoConstraints = false
+    photoPlaceImage.bindFrame(
+      top: 16,
+      bottom: -16,
+      leading: 16,
+      trailing: -16,
+      toView: photoBackgroundView
+    )
+    
+    // Image
+    photoBackgroundView.addSubview(photoImageView)
     photoImageView.layer.cornerRadius = 4
     photoImageView.layer.masksToBounds = true
-    photoImageView.image = Icons.imagePlaceHolder?
-      .withAlignmentRectInsets(
-        UIEdgeInsets(top: -16, left: -16, bottom: -16, right: -16)
-      )
-    photoImageView.tintColor = UIColor.Zeplin.grayNight
     photoImageView.contentMode = .scaleAspectFill
-    containerView.addSubview(photoImageView)
 
     photoImageView.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      photoImageView.widthAnchor.constraint(equalToConstant: 116),
-      photoImageView.heightAnchor.constraint(equalToConstant: 116),
-      photoImageView.centerXAnchor.constraint(
-        equalTo: photoBackgroundView.centerXAnchor
-      ),
-      photoImageView.centerYAnchor.constraint(
-        equalTo: photoBackgroundView.centerYAnchor
-      )
-    ])
+    photoImageView.bindFrame(toView: photoBackgroundView)
   }
 
   // Date
   private func createDateLabel() {
-    dateLabel.textColor = UIColor.Zeplin.grayLight
+    dateLabel.textColor = Zeplin.grayLight
     dateLabel.font = .systemFont(ofSize: 12, weight: .bold)
     dateLabel.textAlignment = .left
     containerView.addSubview(dateLabel)
@@ -187,7 +182,8 @@ extension LiveTableViewCell {
     dateLabel.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       dateLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
-      dateLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 12),
+      dateLabel.leadingAnchor
+        .constraint(equalTo: photoBackgroundView.trailingAnchor, constant: 12),
       dateLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -12),
       dateLabel.heightAnchor.constraint(equalToConstant: 14)
     ])
@@ -195,9 +191,10 @@ extension LiveTableViewCell {
 
   // Name
   private func createNameLabel() {
-    nameLabel.textColor = UIColor.Zeplin.black
+    nameLabel.textColor = Zeplin.black
     nameLabel.font = .systemFont(ofSize: 16, weight: .bold)
     nameLabel.textAlignment = .left
+    nameLabel.numberOfLines = 2
     containerView.addSubview(nameLabel)
 
     nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -205,13 +202,14 @@ extension LiveTableViewCell {
       nameLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 8),
       nameLabel.leadingAnchor.constraint(equalTo: dateLabel.leadingAnchor),
       nameLabel.trailingAnchor.constraint(equalTo: dateLabel.trailingAnchor),
-      nameLabel.heightAnchor.constraint(equalToConstant: 19)
+      nameLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 19)
     ])
+    nameLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
   }
 
   // Description
   private func createDescriptionLabel() {
-    descriptionLabel.textColor = UIColor.Zeplin.grayLight
+    descriptionLabel.textColor = Zeplin.grayLight
     descriptionLabel.font = .systemFont(ofSize: 12)
     descriptionLabel.textAlignment = .left
     descriptionLabel.numberOfLines = 2

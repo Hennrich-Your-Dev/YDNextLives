@@ -9,6 +9,7 @@ import UIKit
 
 class LiveShimmerTableViewCell: UITableViewCell {
   // MARK: Properties
+  var shimmerViews: [UIView] = []
 
   // MARK: Components
   let containerView = UIView()
@@ -36,12 +37,7 @@ class LiveShimmerTableViewCell: UITableViewCell {
   func shimmerCell() {
     DispatchQueue.main.async { [weak self] in
       guard let self = self else { return }
-      self.photoImageViewShimmer.startShimmer()
-      self.dateLabelShimmer.startShimmer()
-      self.nameLabelShimmer.startShimmer()
-      self.descriptionLabelShimmer.startShimmer()
-      self.descriptionLabel2Shimmer.startShimmer()
-      self.scheduleButtonShimmer.startShimmer()
+      self.shimmerViews.forEach { $0.startShimmer() }
     }
   }
 }
@@ -55,6 +51,17 @@ extension LiveShimmerTableViewCell {
     createNameLabel()
     createDescriptionLabel()
     createScheduleButton()
+    
+    shimmerViews.append(
+      contentsOf: [
+        photoImageViewShimmer,
+        dateLabelShimmer,
+        nameLabelShimmer,
+        descriptionLabelShimmer,
+        descriptionLabel2Shimmer,
+        scheduleButtonShimmer
+      ]
+    )
   }
 
   // Container
@@ -82,16 +89,17 @@ extension LiveShimmerTableViewCell {
 
     photoImageViewShimmer.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
-      photoImageViewShimmer.widthAnchor.constraint(equalToConstant: 116),
-      photoImageViewShimmer.heightAnchor.constraint(equalToConstant: 116),
-      photoImageViewShimmer.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
+      photoImageViewShimmer.widthAnchor.constraint(equalToConstant: 126),
+      photoImageViewShimmer.heightAnchor.constraint(equalToConstant: 126),
+      photoImageViewShimmer.topAnchor
+        .constraint(equalTo: containerView.topAnchor, constant: 14),
       photoImageViewShimmer.leadingAnchor.constraint(
         equalTo: containerView.leadingAnchor,
         constant: 10
       ),
       photoImageViewShimmer.bottomAnchor.constraint(
         equalTo: containerView.bottomAnchor,
-        constant: -16
+        constant: -20
       )
     ])
   }

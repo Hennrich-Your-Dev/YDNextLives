@@ -11,9 +11,9 @@ import YDExtensions
 public class YDAnimationBlock: UIView {
   // MARK: Properties
   var icons: [UIImage?] = []
-  let sizes: [CGFloat] = [24, 20, 18, 12]
-  var columns: [CGFloat] = [-10, 10, 20, 30, 40, 50]
-  public var iconTintColor: UIColor? = UIColor.Zeplin.colorPrimaryLight
+  let sizes: [CGFloat] = [24, 20, 18]
+  var columns: [CGFloat] = [-10, 5, 20, 30, 35, 40]
+  public var iconTintColor: UIColor? = Zeplin.colorPrimaryLight
 
   // MARK: Init
   public init() {
@@ -32,32 +32,54 @@ public class YDAnimationBlock: UIView {
   }
 
   public func addIcon(fromMyself: Bool = false, myselfIcon: UIImage? = nil) {
-    var size = sizes.randomElement() ?? 0
-    var x = columns.randomElement() ?? 0
-    let futureX = columns.randomElement() ?? 0
-    var iconImage = icons.randomElement() ?? nil
-
     if fromMyself {
-      size = 24
-      x = 15
-      iconImage = myselfIcon
+      let size: CGFloat = 24
+      let x: CGFloat = 15
+      let iconImage = myselfIcon
+      let futureX = columns.randomElement() ?? 0
+
+      let icon = UIImageView(image: iconImage)
+      icon.frame = CGRect(x: x, y: frame.height, width: size, height: size)
+      icon.tintColor = iconTintColor
+      addSubview(icon)
+
+      UIView.animate(withDuration: 2) {
+        icon.frame = CGRect(
+          x: futureX,
+          y: -50,
+          width: icon.frame.width,
+          height: icon.frame.height
+        )
+        icon.alpha = 0
+      } completion: { _ in
+        icon.removeFromSuperview()
+      }
+      return
     }
 
-    let icon = UIImageView(image: iconImage)
-    icon.frame = CGRect(x: x, y: frame.height, width: size, height: size)
-    icon.tintColor = iconTintColor
-    addSubview(icon)
+    for _ in 1...2 {
+      let size = sizes.randomElement() ?? 0
+      let x = columns.randomElement() ?? 0
+      let futureX = columns.randomElement() ?? 0
+      let iconImage = icons.randomElement() ?? nil
+      let randomY = [frame.height, frame.height-5, frame.height-10, frame.height-15].randomElement() ?? frame.height
 
-    UIView.animate(withDuration: 2) {
-      icon.frame = CGRect(
-        x: futureX,
-        y: -50,
-        width: icon.frame.width,
-        height: icon.frame.height
-      )
-      icon.alpha = 0
-    } completion: { _ in
-      icon.removeFromSuperview()
+      let icon = UIImageView(image: iconImage)
+      icon.frame = CGRect(x: x, y: randomY, width: size, height: size)
+      icon.tintColor = iconTintColor
+      addSubview(icon)
+
+      UIView.animate(withDuration: 2) {
+        icon.frame = CGRect(
+          x: futureX,
+          y: -50,
+          width: icon.frame.width,
+          height: icon.frame.height
+        )
+        icon.alpha = 0
+      } completion: { _ in
+        icon.removeFromSuperview()
+      }
     }
   }
 }
