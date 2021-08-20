@@ -41,6 +41,8 @@ public class Icons {
   public static let exclamation = UIImage(named: "iconExclamation", in: podsBundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
 
   public static let gps = UIImage(named: "gps-icon", in: podsBundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+  
+  public static let happyFace = UIImage(named: "iconHappyFace", in: podsBundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
 
   public static let heart = UIImage(named: "iconHeart", in: podsBundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
 

@@ -62,7 +62,9 @@ class HomeViewModel {
       YDIntegrationHelper.shared.trackEvent(withName: .nextLivesPageView, ofType: .state)
     } else {
       if let liveName = liveName {
-        let parameters = TrackEvents.nextLivesAddToCalendar.parameters(body: ["liveName": liveName])
+        let parameters = TrackEvents.nextLivesAddToCalendar
+          .parameters(body: ["liveName": liveName])
+        
         YDIntegrationHelper.shared.trackEvent(
           withName: .nextLivesAddToCalendar,
           ofType: .action,
@@ -89,18 +91,7 @@ extension HomeViewModel: HomeViewModelDelegate {
 
       switch response {
         case .success(let lives):
-          let filteredLives = lives.filter { curr in
-            guard let initialDate = curr.initialDateAsDate else { return false }
-            return !initialDate.isInPast
-          }
-
-          let sorted = filteredLives.sorted { lhs, rhs -> Bool in
-            guard let dateLhs = lhs.initialDateAsDate else { return false }
-            guard let dateRhs = rhs.initialDateAsDate else { return true }
-
-            return dateLhs.compare(dateRhs) == .orderedAscending
-          }
-
+          let sorted = YDSpaceyComponentNextLive.sort(list: lives)
           self.nextLives.value = sorted
 
         case .failure(let error):

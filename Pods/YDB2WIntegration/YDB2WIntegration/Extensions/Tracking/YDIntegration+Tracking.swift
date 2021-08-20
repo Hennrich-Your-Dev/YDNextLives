@@ -40,7 +40,7 @@ public extension YDIntegrationHelper {
   }
 }
 
-public extension YDIntegrationHelper {
+extension YDIntegrationHelper {
   // MARK: Actions
   func trackAdobeAction(actionName: String, parameters: [String: Any]?) {
     trackingDelegate?.trackAdobeAction(actionName: actionName, parameters: parameters)
@@ -67,12 +67,17 @@ public extension YDIntegrationHelper {
   func trackFirebaseEvent(eventName: String, parameters: [String: Any]?) {
     trackingDelegate?.trackFirebaseEvent(eventName: eventName, parameters: parameters)
   }
-
-  func trackNewRelicEvent(eventName: String, parameters: [String: Any]?) {
+  
+  // MARK: Exposed
+  public func trackNewRelicEvent(eventName: String, parameters: [String: Any]?) {
     trackingDelegate?.trackNewRelicEvent(eventName: eventName, parameters: parameters)
   }
 
-  func trackStuartEvent(eventName: String, parameters: [String: Any]?) {
-    trackingDelegate?.trackStuartEvent(eventName: eventName, parameters: parameters)
+  public func trackStuartEvent(namespace: String, eventName: String, parameters: [String: Any]?) {
+    trackingDelegate?.trackStuartEvent(
+      namespace: namespace,
+      eventName: eventName,
+      parameters: parameters
+    )
   }
 }

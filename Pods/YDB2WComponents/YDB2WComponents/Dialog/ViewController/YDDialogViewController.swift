@@ -30,7 +30,6 @@ class YDDialogViewController: UIViewController {
   @IBOutlet weak var contentView: UIView! {
     didSet {
       contentView.layer.cornerRadius = 6
-      contentView.layer.applyShadow(alpha: 0.08, blur: 20, spread: -1)
     }
   }
 
@@ -98,6 +97,12 @@ class YDDialogViewController: UIViewController {
        let link = messageLink["link"] {
       addMessageLink(message: message, link: link)
     }
+  }
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    
+    contentView.layer.applyShadow(alpha: 0.08, blur: 20, spread: -1)
   }
 
   // MARK: IBActions

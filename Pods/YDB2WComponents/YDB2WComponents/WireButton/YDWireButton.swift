@@ -12,6 +12,19 @@ public class YDWireButton: UIButton {
   // MARK: Properties
   public var callback: ((_ sender: UIButton) -> Void)?
   private var title = ""
+  private var previousTitle = ""
+  
+  // MARK: Components
+  public lazy var activityIndicator: UIActivityIndicatorView = {
+    let activityIndicator = UIActivityIndicatorView()
+    activityIndicator.hidesWhenStopped = true
+    activityIndicator.color = Zeplin.redBranding
+    return activityIndicator
+  }()
+  
+  public lazy var buttonHeightConstraint: NSLayoutConstraint = {
+    heightAnchor.constraint(equalToConstant: 40)
+  }()
 
   // MARK: Init
   public init() {
@@ -39,7 +52,7 @@ public class YDWireButton: UIButton {
   // MARK: Actions
   public func setUpStyle() {
     translatesAutoresizingMaskIntoConstraints = false
-    heightAnchor.constraint(equalToConstant: 40).isActive = true
+    buttonHeightConstraint.isActive = true
     layer.cornerRadius = 4
     layer.borderWidth = 1.5
     layer.borderColor = UIColor.Zeplin.redBranding.cgColor
@@ -70,6 +83,7 @@ public class YDWireButton: UIButton {
 
   public override func setTitle(_ title: String?, for state: UIControl.State) {
     guard let title = title else { return }
+    self.title = title
 
     let attributedString = NSAttributedString(
       string: title,
@@ -79,8 +93,8 @@ public class YDWireButton: UIButton {
       ]
     )
 
-    let attributedStringSelected = NSAttributedString(
-      string: self.title,
+    let attributedStringDisabled = NSAttributedString(
+      string: title,
       attributes: [
         NSAttributedString.Key.foregroundColor: Zeplin.redBranding.withAlphaComponent(0.6),
         NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .medium)
@@ -89,7 +103,7 @@ public class YDWireButton: UIButton {
 
     DispatchQueue.main.async {
       self.setAttributedTitle(attributedString, for: state)
-      self.setAttributedTitle(attributedStringSelected, for: .disabled)
+      self.setAttributedTitle(attributedStringDisabled, for: .disabled)
     }
   }
 
@@ -107,5 +121,26 @@ public class YDWireButton: UIButton {
 
   @objc func onButtonAction(_ sender: UIButton) {
     callback?(sender)
+  }
+  
+  public func setLoading(_ actived: Bool) {
+    if actived {
+      previousTitle = self.title
+      setTitle("", for: .normal)
+      
+      addSubview(activityIndicator)
+      activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+      NSLayoutConstraint.activate([
+        activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
+        activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor)
+      ])
+      
+      activityIndicator.startAnimating()
+      return
+    }
+    
+    activityIndicator.stopAnimating()
+    activityIndicator.removeFromSuperview()
+    setTitle(previousTitle, for: .normal)
   }
 }
